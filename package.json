@@ -1,0 +1,19 @@
+{
+  "name": "sbx-trivia",
+  "version": "1.0.0",
+  "description": "springbox trivia",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ithinkdancan/sbx-trivia.git"
+  },
+  "author": "Daniel Tijerina <ithinkdancan@gmail.com> (http://wrathofdaniel.com/)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ithinkdancan/sbx-trivia/issues"
+  },
+  "homepage": "https://github.com/ithinkdancan/sbx-trivia"
+}
