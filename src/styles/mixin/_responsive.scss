@@ -1,0 +1,39 @@
+@mixin r($media) {
+    /* Landscape phones and down */
+    @if $media == small {
+        @media #{$small-up} { @content; }
+    }
+    @else if $media == small-only {
+        @media #{$small-only} { @content; }
+    }
+    @else if $media == medium {
+        @media #{$medium-up} { @content; }
+    }
+    @else if $media == medium-only {
+        @media #{$medium-only} { @content; }
+    }
+    @else if $media == large {
+        @media #{$large-up} { @content; }
+    }
+    /* Landscape phone to portrait tablet */
+    @else if $media == xlarge {
+        @media #{$xlarge-up} { @content; }
+    }
+    /* Portrait tablet to landscape */
+    @else if $media == xxlarge {
+        @media #{$xxlarge-up} { @content; }
+    }
+
+    @else if $media == retina {
+        @media screen and (-webkit-min-device-pixel-ratio: 2) { @content; }
+    }
+
+        
+
+}
+
+@mixin respond($media...) {
+    @each $mediatype in $media {
+        @include r($mediatype) {@content}
+    }
+}
