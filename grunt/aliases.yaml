@@ -1,0 +1,10 @@
+build:
+- 'clean'
+- 'sass'
+- 'autoprefixer'
+- 'csso'
+- 'htmlmin:dist'
+
+default:
+- 'build'
+- 'watch'

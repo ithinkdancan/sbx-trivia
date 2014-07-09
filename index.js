@@ -7,7 +7,7 @@ http.listen(8080);
 
 //Application Routing
 app.get('/', function(req, res){
-  res.sendfile('app/index.html');
+  res.sendfile('src/index.html');
 });
 
 
