@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/ithinkdancan/sbx-trivia/issues"
   },
-  "homepage": "https://github.com/ithinkdancan/sbx-trivia"
+  "homepage": "https://github.com/ithinkdancan/sbx-trivia",
+  "dependencies": {
+    "socket.io": "~1.0.6",
+    "express": "~4.5.1"
+  }
 }
