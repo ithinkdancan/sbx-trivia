@@ -10,16 +10,18 @@ angular.module('sbx.trivia.controller.login', ['sbx.trivia.service.authenticatio
 	function ($scope,   authenticationService,   $location){
 
 		var success = function () {
+			console.log('success!');
 			$location.path('/');
 		}
 
 		var failure = function () {
 			console.log('failure');
+			//username was probably taken
 		}
 
 		$scope.createTeam = function (){
 			if($scope.username){
-				authenticationService.login($scope.username).then(success, failure)
+				authenticationService.register($scope.username).then(success, failure)
 			}
 		}
 	}
