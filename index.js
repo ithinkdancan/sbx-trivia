@@ -12,5 +12,9 @@ app.use(express.static(__dirname + '/dist/'));
 //SOCKETS!!!
 io.on('connection', function(socket){
   console.log('a user connected');
+
+  socket.on('client', function(){
+  	console.log('hey he said someeething', arguments)
+  })
 });
 

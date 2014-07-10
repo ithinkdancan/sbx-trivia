@@ -5,6 +5,7 @@ build:
 - 'csso'
 - 'htmlmin:dist'
 - 'html2js'
+- 'concat'
 - 'uglify'
 
 default:

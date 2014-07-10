@@ -4,6 +4,6 @@
 * Description
 */
 angular.module('sbx.trivia.service.socket', ['btford.socket-io'])
-.factory('socketService', ['socketFactory', function (socketFactory) {
+.factory('socket', ['socketFactory', function (socketFactory) {
   return socketFactory();
 }]);

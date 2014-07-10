@@ -63,7 +63,7 @@ module.exports = {
 
     scripts: {
         files: [ '<%= paths.src %>/scripts/**/*.js' ],
-        tasks: [ 'uglify:app' ],
+        tasks: [ 'concat:app', 'newer:uglify' ],
         options: {
             livereload: true
         }

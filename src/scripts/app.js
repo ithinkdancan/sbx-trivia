@@ -2,8 +2,7 @@ angular.module('sbx.trivia', [
 	'ngRoute',
 	'sbx.trivia.templates',
 	'sbx.trivia.controller.login',
-	'sbx.trivia.service.authentication',
-	'sbx.trivia.service.socket'
+	'sbx.trivia.service.authentication'
 ])
 
 .config(['$routeProvider', function($routeProvider){
