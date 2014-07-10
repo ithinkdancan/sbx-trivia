@@ -4,6 +4,7 @@ build:
 - 'autoprefixer'
 - 'csso'
 - 'htmlmin:dist'
+- 'html2js'
 - 'uglify'
 
 default:

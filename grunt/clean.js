@@ -1,1 +1,1 @@
-module.exports = ['<%= paths.dist %>'];
+module.exports = ['<%= paths.dist %>', '.tmp'];

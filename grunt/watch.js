@@ -11,6 +11,14 @@ module.exports = {
         }
     },
 
+    templates: {
+        files: ['<%= paths.src %>/scripts/**/*.tpl.html'],
+        tasks: ['html2js', 'uglify:app'],
+        options: {
+          livereload: false
+        }
+    },
+
     sass: {
         files: [ '<%= paths.src %>/styles/**/*.scss' ],
         tasks: ['sass', 'autoprefixer', 'csso'],

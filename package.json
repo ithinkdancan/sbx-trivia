@@ -30,6 +30,7 @@
     "grunt-csso": "~0.6.2",
     "grunt-sass": "~0.14.0",
     "load-grunt-config": "~0.10.0",
-    "grunt-contrib-htmlmin": "~0.3.0"
+    "grunt-contrib-htmlmin": "~0.3.0",
+    "grunt-html2js": "~0.2.8"
   }
 }
