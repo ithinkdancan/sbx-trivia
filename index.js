@@ -2,12 +2,15 @@ var express = require('express');
 var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var User = require('./user.js');
 var router = express.Router();
 var bodyParser = require('body-parser');
 
 
+var User = require('./user.js');
+
+
 var users = [];
+var games = [];
 
 //create the server
 http.listen(8080);
