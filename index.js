@@ -33,17 +33,17 @@ router.route('/users')
 		}
 		
 	})
-
-
 app.use('/api', router);
 
+
+
+
 var broadcastUsers = function () {
-	console.log('sending users')
 	io.to('board').emit('users:list', users);
 }
 
 
-// //SOCKETS!!!
+//SOCKETS!!!
 io.on('connection', function(socket){
 
 	socket.on('board:register', function(){
