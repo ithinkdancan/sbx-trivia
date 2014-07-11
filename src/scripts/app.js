@@ -3,6 +3,7 @@ angular.module('sbx.trivia', [
 	'sbx.trivia.templates',
 	'sbx.trivia.controller.login',
 	'sbx.trivia.controller.board',
+	'sbx.trivia.controller.home',
 	'sbx.trivia.service.authentication'
 ])
 
@@ -11,14 +12,15 @@ angular.module('sbx.trivia', [
 	$routeProvider
 
 		.when('/', {
-			templateUrl: 'home.html',
-			 resolve: {
+			controller: 'homeController',
+			templateUrl: 'views/home/home.tpl.html',
+			resolve: {
 
 			 	//make sure the user is logged in before showing the home screen
 			 	loggedIn: ['authenticationService', function(authenticationService){
 			 		return authenticationService.isAuthenticated('/login');
 			 	}]
-			 }
+			}
 		})
 
 		.when('/login', {
