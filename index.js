@@ -19,22 +19,63 @@ http.listen(8080);
 app.use(express.static(__dirname + '/dist/'));
 
 //set up the api
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 router.route('/users')
 	.post(function(req, res) {
 
 		var username = req.body.username;
-		console.log(users.filter(function(obj){ return obj.username == username }));
+		var create = req.body.create;
+		var matchingUser = users.filter(function(obj){ 
+				return obj.username == username 
+			});
 		
 		//check if the username is already in use
-		if( users.filter(function(obj){ return obj.username == username }).length > 0 ){
-			res.json({ success: false });
+		if( matchingUser.length > 0 ){
+			res.json({ success: false });		
 		} else {
-			users.push(new User(username))
-			res.json({ success: true });
+			console.log('creating a new user', username);
+			var user = new User(username);
+			users.push(user)
+			res.json({ success: true, user: user });
 			broadcastUsers();
 		}
 		
+	})
+
+
+router.route('/users/:username')
+
+	//get a user
+	.get(function(req, res){
+
+		var username = req.params.username;
+		var matchingUser = users.filter(function(obj){ 
+				return obj.username == username 
+			});
+
+		if(matchingUser.length){
+			user = matchingUser[0];
+		} else {
+			user = new User(username);
+			users.push(user)
+		}
+
+		res.json({ success: true, user: user  });
+	})
+
+	//update a user
+	.post(function(req, res){
+
+		var username = req.params.username;
+		var matchingUser = users.filter(function(obj){ 
+				return obj.username == username 
+			})[0];
+
+			matchingUser.avatar = req.body.avatar;
+
+			console.log(users);
+
+		res.json({ success: true, user: matchingUser[0] });
 	})
 app.use('/api', router);
 

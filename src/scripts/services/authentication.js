@@ -10,9 +10,18 @@ factory('authenticationService', [
 	function($q, User){
 
 	var username;
+	var currentUser = {};
 	var authenticated = false;
 	
 	return {
+
+		getCurrentUser: function () {
+
+			if(this.isAuthenticated()){
+				return currentUser;
+			}
+
+		},
 
 
 		isAuthenticated: function (failureRedirect) {
@@ -21,9 +30,11 @@ factory('authenticationService', [
 
 			if(username){
 				if(!authenticated){
-					console.log(this)
 					authenticated = true;
-					this.register(username);
+					var user = new User();
+					user.$get({username: username}).then(function(data){
+						currentUser = data.user;
+					})
 				}
  				return true;
 			} else {
@@ -38,21 +49,42 @@ factory('authenticationService', [
 			var defer =  $q.defer();
 
 			//create a new user resource
-			var user = new User({username: username});	
+			var user = new User({username: username, create: true});	
 
 			//save the user
 			user.$save().then(function(data){
+				
 				if(data.success){
+					//save the username to LS
 					localStorage.setItem('username', username);
-					defer.resolve();
+
+					//set authentication
+					authenticated = true;
+					currentUser = data.user;
+
+					//resolve
+					defer.resolve(currentUser);
 				} else {
 					defer.reject();
 				}
+
 			})	
 
 			//return the promise
 			return defer.promise;
 		
+		},
+
+		uploadPhoto: function(photo) {
+			console.log('upload!', photo);
+
+			currentUser.avatar = photo;
+
+			var user = new User(currentUser);
+
+			user.$save({username: username}).then(function(){
+				console.log('uploadPhoto got something', arguments);
+			})
 		}
 	};
 

@@ -20,6 +20,8 @@
     "angular": "~1.2.19",
     "angular-socket-io": "~0.6.0",
     "angular-route": "~1.2.19",
-    "angular-resource": "~1.2.19"
+    "angular-resource": "~1.2.19",
+    "ios-imagefile-megapixel": "*",
+    "exif-js": "https://github.com/jseidelin/exif-js.git"
   }
 }
