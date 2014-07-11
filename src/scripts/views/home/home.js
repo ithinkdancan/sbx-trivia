@@ -6,5 +6,7 @@
 angular.module('sbx.trivia.controller.home', ['sbx.trivia.directive.springbox'])
 
 .controller('homeController', ['$scope', function($scope){
+
+	 $scope.list = {};
 	
 }])

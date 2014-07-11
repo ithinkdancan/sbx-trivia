@@ -1,6 +1,7 @@
 angular.module('sbx.trivia', [
 	'ngRoute',
 	'sbx.trivia.templates',
+	'sbx.trivia.directive.header',
 	'sbx.trivia.controller.login',
 	'sbx.trivia.controller.board',
 	'sbx.trivia.controller.home',
@@ -17,8 +18,10 @@ angular.module('sbx.trivia', [
 			resolve: {
 
 			 	//make sure the user is logged in before showing the home screen
-			 	loggedIn: ['authenticationService', function(authenticationService){
-			 		return authenticationService.isAuthenticated('/login');
+			 	authenticated: ['authenticationService', '$location', function(authenticationService, $location){
+			 		if(!authenticationService.isAuthenticated()){
+			 			$location.path('/login')
+			 		}
 			 	}]
 			}
 		})
@@ -30,9 +33,9 @@ angular.module('sbx.trivia', [
 
 				//don't let the user login again
 			 	authenticated: ['authenticationService', '$location', function(authenticationService, $location){
-			 		authenticationService.isAuthenticated().then(function(){
+			 		if(authenticationService.isAuthenticated()){
 			 			$location.path('/');
-			 		})
+			 		}
 			 	}]
 			}
 		})
@@ -49,12 +52,5 @@ angular.module('sbx.trivia', [
 }])
 
 .controller('appController', ['$rootScope', '$location', function($rootScope, $location){
-
-	//catches rejected route resolve promises
-	$rootScope.$on('$routeChangeError', function(event, current, previous, rejection){
-		if(rejection && rejection.redirect){
-			$location.path(rejection.redirect);
-		}
-	})
 
 }])

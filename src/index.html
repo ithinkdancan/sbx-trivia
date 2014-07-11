@@ -4,16 +4,14 @@
 	<meta charset="UTF-8">
 	<title>Hello</title>
 	<link rel="stylesheet" href="styles/main.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimal-ui">
 </head>
 <body>
-	<header>
-		<h1>Springbox Trivia</h1>
-	</header>
-
+	<sbx-header></sbx-header>
 	<div class="content" ng-view ng-controller="appController"></div>
 
 	<script src="/socket.io/socket.io.js"></script>
-	<script src="scripts/lib.min.js"></script>
-	<script src="scripts/app.min.js"></script>
+	<script src="scripts/lib.js"></script>
+	<script src="scripts/app.js"></script>
 </body>
 </html>

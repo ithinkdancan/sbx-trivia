@@ -10,21 +10,26 @@ factory('authenticationService', [
 	function($q, User){
 
 	var username;
+	var authenticated = false;
 	
 	return {
 
+
 		isAuthenticated: function (failureRedirect) {
-			var defer =  $q.defer();
+			
 			username = localStorage.getItem('username');
 
 			if(username){
-				this.register(username);
- 				defer.resolve({username:username});
+				if(!authenticated){
+					console.log(this)
+					authenticated = true;
+					this.register(username);
+				}
+ 				return true;
 			} else {
-				defer.reject({redirect:failureRedirect});
+				return false;
 			}
 
-	 		return defer.promise;
 		},
 
 
