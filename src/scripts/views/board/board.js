@@ -12,6 +12,7 @@ angular.module('sbx.trivia.controller.board', ['sbx.trivia.service.socket'])
 		socket.emit('board:register');
 
 		socket.on('users:list', function(data){
+			$scope.users = data;
 			console.log('users:list', data)
 		});
 

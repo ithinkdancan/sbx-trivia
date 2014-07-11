@@ -13,16 +13,12 @@ factory('authenticationService', [
 	
 	return {
 
-		getUsername: function () {
-
-		},
-
 		isAuthenticated: function (failureRedirect) {
 			var defer =  $q.defer();
 			username = localStorage.getItem('username');
 
 			if(username){
-				// this.register(username);
+				this.register(username);
  				defer.resolve({username:username});
 			} else {
 				defer.reject({redirect:failureRedirect});

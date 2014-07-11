@@ -1,12 +1,9 @@
 
 var user = function (username) {
-	console.log('username', username)
-	this.username = username
+	this.username = username;
+	this.answers = [];
 }
 
-user.prototype = {
 
-
-}
 
 module.exports = user

@@ -13,7 +13,7 @@ module.exports = {
 
     templates: {
         files: ['<%= paths.src %>/scripts/**/*.tpl.html'],
-        tasks: ['html2js', 'uglify:app'],
+        tasks: ['html2js', 'uglify'],
         options: {
           livereload: false
         }
