@@ -58,7 +58,7 @@ angular.module('sbx.trivia', [
 
 		.when('/board', {
 			controller: 'boardController',
-			templateUrl: 'views/board/board.tpl.html',
+			templateUrl: 'views/board/board.tpl.html'
 		})
 
 		.otherwise({ 

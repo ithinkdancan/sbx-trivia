@@ -148,6 +148,7 @@ io.on('connection', function(socket){
 
 	socket.on('user:register', function(){
 		updateGameBoard(socket)
+		broadcastUsers();
 	})
 
 	socket.on('game:join', function(data){
