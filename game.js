@@ -1,10 +1,10 @@
 var questions = require('./questions.json');
 
-var game = function (io) {
+var game = function (config) {
 
 	console.log('New Game');
 
-	this.io = io;
+	this.io = config.io;
 	this.id = Date.now();
 	this.gameRoom = 'game:' + this.id;
 	this.currentQuestion = -1;

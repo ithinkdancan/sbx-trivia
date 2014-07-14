@@ -24,13 +24,17 @@ angular.module('sbx.trivia.controller.game', ['sbx.trivia.service.socket', 'sbx.
 	 	}
 	}
 
+	var leaveGame = function () {
+		$location.path('/');
+	}
+
 	var updateQuestion = function (data) {
 		$scope.selectedAnswer = false;
 		$scope.question = data;
 	}
 
-	var showResult = function () {
-		console.log('showResult');
+	var showResult = function (data) {
+		console.log('showResult', data);
 	}
 
 	//user has selected an answer
@@ -68,6 +72,7 @@ angular.module('sbx.trivia.controller.game', ['sbx.trivia.service.socket', 'sbx.
 	socket.on('game:update', updateGame);
 	socket.on('game:question', updateQuestion);
 	socket.on('game:result', showResult);
+	socket.on('game:leave', leaveGame);
 
 	$scope.$on('$destroy', function(){
 		socket.removeListener('game:update', updateGame);

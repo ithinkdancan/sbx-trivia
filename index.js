@@ -10,7 +10,7 @@ var User = require('./user.js');
 var Game = require('./game.js');
 
 var users = [];
-var games = [new Game(io)];
+var games = [];
 
 //create the server
 http.listen(8080);
@@ -82,7 +82,12 @@ app.use('/api', router);
 
 
 var createGame = function () {
-	var game = new Game(io);
+	var game = new Game({
+		io:io,
+		onStart: false,
+		onNext: false,
+		onComplete: false
+	});
 	games.push(game);
 }
 
@@ -104,7 +109,8 @@ var joinGame = function (data, socket) {
 		game.addUser(data.username, socket)
 		updateGameBoard();
 	} else {
-		console.log('didnt find that game')
+		console.log('didnt find that game');
+		socket.emit('game:leave', {message: 'Game does not exist'});
 	}
 }
 
@@ -178,4 +184,6 @@ io.on('connection', function(socket){
 
 
 });
+
+createGame();
 
