@@ -26,7 +26,7 @@ router.route('/users')
 		var username = req.body.username;
 		var create = req.body.create;
 		var matchingUser = users.filter(function(obj){ 
-				return obj.username == username 
+				return obj.username == username; 
 			});
 		
 		//check if the username is already in use
@@ -35,7 +35,7 @@ router.route('/users')
 		} else {
 			console.log('creating a new user', username);
 			var user = new User(username);
-			users.push(user)
+			users.push(user);
 			res.json({ success: true, user: user });
 			broadcastUsers();
 		}
@@ -84,7 +84,7 @@ app.use('/api', router);
 var createGame = function () {
 	var game = new Game({
 		io:io,
-		onStart: false,
+		onStart: updateGameBoard,
 		onNext: false,
 		onComplete: false
 	});
@@ -94,8 +94,8 @@ var createGame = function () {
 var findGame = function (id) {
 
 	var match = games.filter(function(obj){ 
-		return obj.id == +id 
-	});;
+		return obj.id == +id;
+	});
 
 	return match ? match[0] : false;
 
@@ -106,7 +106,7 @@ var joinGame = function (data, socket) {
 	var game = findGame(data.id);
 
 	if(game){
-		game.addUser(data.username, socket)
+		game.addUser(data.username, socket);
 		updateGameBoard();
 	} else {
 		console.log('didnt find that game');
@@ -145,7 +145,10 @@ var broadcastUsers = function () {
 
 var updateGameBoard = function (socket) {
 
-	var gamesData = games.map(function(obj){ return obj.data; })
+	//get only games that are not complete
+	var gamesData = games
+		.map(function(obj){ return obj.data; })
+		.filter(function(obj){ return obj.completed == false; });
 
 	if(socket){
 		socket.emit('games:list', gamesData);
@@ -158,17 +161,16 @@ var updateGameBoard = function (socket) {
 
 //SOCKETS!!!
 io.on('connection', function(socket){
-
 	
 	socket.on('board:register', function(){
 		socket.join('board');
 		broadcastUsers();
-	})
+	});
 
 	socket.on('user:register', function(){
 		updateGameBoard(socket)
 		broadcastUsers();
-	})
+	});
 
 	socket.on('game:join', function(data){
 		joinGame(data, socket);
@@ -176,12 +178,11 @@ io.on('connection', function(socket){
 
 	socket.on('game:leave', function(data){
 		leaveGame(data, socket);
-	})
+	});
 
 	socket.on('question:answer', function(data){
 		answerQuestion(data);
-	})
-
+	});
 
 });
 

@@ -9,7 +9,13 @@
 
 	   	 <!-- Existing Game -->
 	      <li class="list-item" ng-repeat="game in games">
-	      	<a ng-href="#/game/{{game.id}}"><span class="count">{{game.users.length}}</span>Join The Game</a>
+	      	<a ng-href="#/game/{{game.id}}" ng-if="!game.started" class="list-link">
+	      		<span class="count">{{game.users.length}}</span>
+	      		Join The Game
+	      	</a>
+	      	<span ng-if="game.started" class="list-link">
+	      		Game in Progress
+	      	</span>
 	      </li>
 <!-- 
 	      <li class="list-item list-item-action" ng-if="!game.started">

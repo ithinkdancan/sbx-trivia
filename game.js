@@ -5,6 +5,7 @@ var game = function (config) {
 	console.log('New Game');
 
 	this.io = config.io;
+	this.onGameStart = config.onStart || false;
 	this.id = Date.now();
 	this.gameRoom = 'game:' + this.id;
 	this.currentQuestion = -1;
@@ -29,6 +30,9 @@ game.prototype.update = function () {
 game.prototype.start = function () {
 
 	this.data.started = true;
+	if(typeof this.onGameStart == 'function'){
+		this.onGameStart();
+	}
 
 	this.next();
 	this.update();

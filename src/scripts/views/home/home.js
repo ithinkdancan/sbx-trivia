@@ -12,6 +12,7 @@ angular.module('sbx.trivia.controller.home', ['sbx.trivia.directive.springbox', 
 	 $scope.games = false;
 
 	 var updateGames = function (games) {
+	 	console.log('games update', games)
 	 	$scope.games = games;
 	 }
 

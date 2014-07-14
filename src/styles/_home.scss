@@ -16,7 +16,7 @@
 	    text-align: left;
 	    border-bottom: 1px dashed rgba(0,0,0,.2);
 
-	    a {
+	    .list-link {
 	        padding: 1em;
 	        font-size: 1.5em;
 	        display: block;
@@ -24,15 +24,6 @@
 	        // @include emboss;
 	        text-decoration: none;
 	    }
-	}
-
-	.list-item-action {
-	    text-align: center;
-
-	    a{
-	        color: #c94338;
-	    }
-	    
 	}
 
 	.list-item:nth-child(even) {
