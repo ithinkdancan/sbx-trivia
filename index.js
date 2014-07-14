@@ -57,7 +57,8 @@ router.route('/users/:username')
 			user = matchingUser[0];
 		} else {
 			user = new User(username);
-			users.push(user)
+			users.push(user);
+			broadcastUsers();
 		}
 
 		res.json({ success: true, user: user  });
@@ -73,7 +74,7 @@ router.route('/users/:username')
 
 			matchingUser.avatar = req.body.avatar;
 
-			console.log(users);
+			broadcastUsers();
 
 		res.json({ success: true, user: matchingUser[0] });
 	})

@@ -10,6 +10,7 @@ var game = function (io) {
 	this.currentQuestion = -1;
 	this.questionActive = false;
 	this.answers = [];
+	this.score = {};
 	
 	this.data = {
 		id: this.id,
@@ -35,15 +36,26 @@ game.prototype.start = function () {
 
 game.prototype.next = function () {
 
+	var that = this;
 	this.currentQuestion++;
-	this.questionActive = true;
-	this.broadcastQuestion(this.currentQuestion);
 
-	// setTimeout(function(){
-	// 	this.broadcastResult.call(this,this.currentQuestion);
-	// },30000)
+	if(questions[this.currentQuestion]){
 
+		this.questionActive = true;
+		this.broadcastQuestion(this.currentQuestion);
+
+		setTimeout(function(){
+			// that.broadcastResult.call(that,that.currentQuestion);
+		},1000)
+
+	} else {
+		this.end();
+	}
 };
+
+game.prototype.end = function () {
+	this.io.to(this.gameRoom).emit('game:over');
+}
 
 game.prototype.addUser = function(username, socket){
 	
@@ -51,13 +63,16 @@ game.prototype.addUser = function(username, socket){
 		console.log(username + ' has joined the game');
 		
 		this.data.users.push(username);
+		
+		//start the game in in 30 seconds or so
 		var that = this;
-
 		if(!this.data.started && this.data.users.length == 1){
 			setTimeout(function(){
 				that.start()
 			},1000)
 		}
+
+
 	} else {
 
 	}
@@ -84,7 +99,20 @@ game.prototype.removeUser = function(username, socket){
 
 game.prototype.broadcastResult = function (index){
 
+	var that = this;
+	var question = questions[index];
 
+	this.questionActive = false;
+
+	this.io.to(this.gameRoom).emit('game:result', {
+		id: index,
+		correctAnswer: question.correct
+	});
+
+
+	setTimeout(function(){
+		that.next.call(that);
+	},1000)
 
 }
 

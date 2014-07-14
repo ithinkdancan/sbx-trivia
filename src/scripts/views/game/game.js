@@ -30,7 +30,7 @@ angular.module('sbx.trivia.controller.game', ['sbx.trivia.service.socket', 'sbx.
 	}
 
 	var showResult = function () {
-
+		console.log('showResult');
 	}
 
 	//user has selected an answer

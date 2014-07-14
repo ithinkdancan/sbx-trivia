@@ -1,6 +1,10 @@
-<div>
-	Leaderboard
+<div class="board">
 	<ul>
-		<li ng-repeat="user in users">{{user.username}}</li>
+		<li ng-repeat="user in users" class="user">
+			<div class="user-image">
+				<div ng-if="user.avatar" ng-style="{'background-image':'url('+user.avatar+')'}"></div>
+			</div>
+			<div class="user-name">{{user.username}}</div>
+		</li>
 	</ul>
 </div>

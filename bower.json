@@ -22,6 +22,7 @@
     "angular-route": "~1.2.19",
     "angular-resource": "~1.2.19",
     "ios-imagefile-megapixel": "*",
-    "exif-js": "https://github.com/jseidelin/exif-js.git"
+    "exif-js": "https://github.com/jseidelin/exif-js.git",
+    "angular-animate": "~1.2.20"
   }
 }

@@ -1,5 +1,6 @@
 angular.module('sbx.trivia', [
 	'ngRoute',
+	'ngAnimate',
 	'sbx.trivia.templates',
 	'sbx.trivia.directive.header',
 	'sbx.trivia.controller.login',
