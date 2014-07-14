@@ -120,6 +120,18 @@ var leaveGame = function (data, socket) {
 
 }
 
+var answerQuestion = function(data, socket) {
+
+	var game = findGame(data.id);
+
+	if(game){
+		game.userAnswer(data);
+	} else {
+		console.log('didnt find that game');
+	}
+
+}
+
 var broadcastUsers = function () {
 	io.to('board').emit('users:list', users);
 }
@@ -158,5 +170,11 @@ io.on('connection', function(socket){
 	socket.on('game:leave', function(data){
 		leaveGame(data, socket);
 	})
+
+	socket.on('question:answer', function(data){
+		answerQuestion(data);
+	})
+
+
 });
 

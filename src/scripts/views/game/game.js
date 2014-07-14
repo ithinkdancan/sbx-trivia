@@ -36,14 +36,11 @@ angular.module('sbx.trivia.controller.game', ['sbx.trivia.service.socket', 'sbx.
 	//user has selected an answer
 	$scope.selectAnswer = function (index) {
 		$scope.selectedAnswer = index;
-		console.log({
-			username: user.username, 
-			id: $scope.question.id,
-			answer: $scope.selectedAnswer
-		});
+
 		socket.emit('question:answer', {
 			username: user.username, 
-			id: $scope.question.id,
+			id: gameId,
+			questionId: $scope.question.id,
 			answer: $scope.selectedAnswer
 		});
 	}

@@ -7,8 +7,9 @@ var game = function (io) {
 	this.io = io;
 	this.id = Date.now();
 	this.gameRoom = 'game:' + this.id;
-	this.currentQuestion = 0;
+	this.currentQuestion = -1;
 	this.questionActive = false;
+	this.answers = [];
 	
 	this.data = {
 		id: this.id,
@@ -25,12 +26,23 @@ game.prototype.update = function () {
 };
 
 game.prototype.start = function () {
-	console.log('start!')
-	
+
 	this.data.started = true;
+
+	this.next();
+	this.update();
+};
+
+game.prototype.next = function () {
+
+	this.currentQuestion++;
 	this.questionActive = true;
 	this.broadcastQuestion(this.currentQuestion);
-	this.update();
+
+	// setTimeout(function(){
+	// 	this.broadcastResult.call(this,this.currentQuestion);
+	// },30000)
+
 };
 
 game.prototype.addUser = function(username, socket){
@@ -70,10 +82,20 @@ game.prototype.removeUser = function(username, socket){
 	}
 }
 
+game.prototype.broadcastResult = function (index){
+
+
+
+}
+
 game.prototype.broadcastQuestion = function (index, socket){
 	
 	if(this.questionActive){
 		var question = questions[index];
+
+		if(!this.answers[index]){
+			this.answers[index] = {};
+		}
 
 		var data = {
 			id: index,
@@ -91,10 +113,16 @@ game.prototype.broadcastQuestion = function (index, socket){
 		}
 
 		// broadcastNumResponses();
-
 	}
-	
-	
+
+}
+
+game.prototype.userAnswer = function (data) {
+
+	if(data.questionId == this.currentQuestion && this.questionActive){
+		this.answers[this.currentQuestion][data.username] = data.answer;
+	}
+
 }
 
 module.exports = game;
