@@ -77,7 +77,8 @@ angular.module('sbx.trivia.controller.game', ['sbx.trivia.service.socket', 'sbx.
 	$scope.$on('$destroy', function(){
 		socket.removeListener('game:update', updateGame);
 		socket.removeListener('game:question', updateQuestion);
-		socket.removeListener('game:result', showResult)
+		socket.removeListener('game:result', showResult);
+		socket.removeListener('game:leave', leaveGame);
 	})
 	
 }])
