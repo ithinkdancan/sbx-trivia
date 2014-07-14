@@ -1,1 +1,11 @@
-<div class="game">Game! {{game}}</div>
+<div class="game">
+	<div class="instructions">
+		<span ng-if="!game.started">Waiting for the game to start</span>
+	</div>
+	<div class="questions">
+		<div class="question-text">{{question.text}}</div>
+		<ul class="options">
+			<li ng-repeat="option in question.options"><a href ng-click="selectAnswer($index)">{{option.text}}</a></li>
+		</ul>
+	</div>
+</div>

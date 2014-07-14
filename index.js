@@ -10,7 +10,7 @@ var User = require('./user.js');
 var Game = require('./game.js');
 
 var users = [];
-var games = [new Game()];
+var games = [new Game(io)];
 
 //create the server
 http.listen(8080);
@@ -81,16 +81,17 @@ app.use('/api', router);
 
 
 var createGame = function () {
-	var game = new Game();
+	var game = new Game(io);
 	games.push(game);
 }
 
 var findGame = function (id) {
 
-	return games.filter(function(obj){ 
-		console.log(obj, +id)
-			return obj.id == +id 
-		})[0];
+	var match = games.filter(function(obj){ 
+		return obj.id == +id 
+	});;
+
+	return match ? match[0] : false;
 
 }
 
@@ -99,8 +100,8 @@ var joinGame = function (data, socket) {
 	var game = findGame(data.id);
 
 	if(game){
-		game.addUser(data.username)
-		broadcastGames();
+		game.addUser(data.username, socket)
+		updateGameBoard();
 	} else {
 		console.log('didnt find that game')
 	}
@@ -111,8 +112,8 @@ var leaveGame = function (data, socket) {
 	var game = findGame(data.id);
 
 	if(game){
-		game.removeUser(data.username)
-		broadcastGames();
+		game.removeUser(data.username, socket);
+		updateGameBoard();
 	} else {
 		console.log('didnt find that game');
 	}
@@ -123,12 +124,14 @@ var broadcastUsers = function () {
 	io.to('board').emit('users:list', users);
 }
 
-var broadcastGames = function (socket) {
+var updateGameBoard = function (socket) {
+
+	var gamesData = games.map(function(obj){ return obj.data; })
 
 	if(socket){
-		socket.emit('games:list', games);
+		socket.emit('games:list', gamesData);
 	} else {
-		io.sockets.emit('games:list', games);
+		io.sockets.emit('games:list', gamesData);
 	}
 	
 }
@@ -144,15 +147,15 @@ io.on('connection', function(socket){
 	})
 
 	socket.on('user:register', function(){
-		broadcastGames(socket)
+		updateGameBoard(socket)
 	})
 
 	socket.on('game:join', function(data){
-		joinGame(data, socket)
+		joinGame(data, socket);
 	});
 
 	socket.on('game:leave', function(data){
-		leaveGame(data, socket)
+		leaveGame(data, socket);
 	})
 });
 

@@ -46,7 +46,6 @@ angular.module('sbx.trivia.directive.header', [
 		$scope.$watch(function(){ 
 			return authenticationService.getCurrentUser(); 
 		}, function(user){
-			console.log('user!', user)
 			$scope.user = user;
 		})
 

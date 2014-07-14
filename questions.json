@@ -1,0 +1,97 @@
+[
+	{
+		"text" : "How many total cans did we collect for the food drive?",
+		"options" :  [
+			{ "text": "314"},
+			{ "text": "276"},
+			{ "text": "188"},
+			{ "text": "206"}
+		],
+		"correct" : 1
+	},
+	{
+		"text" : "What team scored the highest number of points?",
+		"options" :  [
+			{ "text": "Shaft Shank Redemption"},
+			{ "text": "Hipster Heros"},
+			{ "text": "Big Hero 6"},
+			{ "text": "The Whiskey 6"}
+		],
+		"correct" : 0
+	},{
+		"text" : "What team scored the lowest amount of points?",
+		"options" :  [
+			{ "text": "The Hourlies"},
+			{ "text": "Big Hero 6"},
+			{ "text": "The Whiskey 6"},
+			{ "text": "The Nanananananananas"}
+		],
+		"correct" : 2 
+	},{
+		"text" : "In the spirit of the game Head’s Up, complete this phrase: ______ chaps",
+		"options" :  [
+			{ "text": "leather"},
+			{ "text": "assless"},
+			{ "text": "cowboy"},
+			{ "text": "sexy"}
+		],
+		"correct" : 1
+	},{
+		"text" : "What team allegedly has a home brewer of moonshine in their midst.",
+		"options" : [
+			{ "text": "Shaft Shank Redemption"},
+			{ "text": "The Nanananananananananananananananas"},
+			{ "text": "Teenage Mutant Ninja Pixels"},
+			{ "text": "The Whiskey 6"}
+		],
+		"correct" : 3 
+	},{
+		"text" : "Who was benefitting from our collection of canned goods?",
+		"options" : [
+			{ "text": "Ample Harvest"},
+			{ "text": "East Texas Food Bank"},
+			{ "text": "Hanna Barr"},
+			{ "text": "Capital Area Food Bank"}
+		],
+		"correct" : 3 
+	},{
+		"text" : "What was Iftekhar’s outfit?",
+		"options" : [
+			{ "text": "Raggedy Rasta Ann"},
+			{ "text": "Octopus Head"},
+			{ "text": "Spiderman"},
+			{ "text": "The love child of Carrot Top and Bob Marley"}
+		],
+		"correct" : 2 
+	},{
+		"text" : "Which team did completely not dress up minus one plastic figurine?",
+		"options" : [
+			{ "text": "Big Hero 6"},
+			{ "text": "Captain Planet and the Pixelteers"},
+			{ "text": "Hipster Heros"},
+			{ "text": "The Hourlies"}
+		],
+		"correct" : 0
+	},{
+		"text" : "Which sports team was on Joshs' Hipster scarf?",
+		"options" : [
+			{ "text": "Bayern Munich"},
+			{ "text": "Prussia Münster"},
+			{ "text": "Manchester United"},
+			{ "text": "Werder Bremen"}
+		],
+		"correct" : 0
+	},{
+		"text" : "How many bays does Top Golf have?",
+		"options" : [
+			{ "text": "99"},
+			{ "text": "300"},
+			{ "text": "102"},
+			{ "text": "405"}
+		],
+		"correct" : 2
+	}
+
+
+
+]
