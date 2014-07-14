@@ -7,10 +7,10 @@ var bodyParser = require('body-parser');
 
 
 var User = require('./user.js');
-
+var Game = require('./game.js');
 
 var users = [];
-var games = [];
+var games = [new Game()];
 
 //create the server
 http.listen(8080);
@@ -80,21 +80,79 @@ router.route('/users/:username')
 app.use('/api', router);
 
 
+var createGame = function () {
+	var game = new Game();
+	games.push(game);
+}
 
+var findGame = function (id) {
+
+	return games.filter(function(obj){ 
+		console.log(obj, +id)
+			return obj.id == +id 
+		})[0];
+
+}
+
+var joinGame = function (data, socket) {
+
+	var game = findGame(data.id);
+
+	if(game){
+		game.addUser(data.username)
+		broadcastGames();
+	} else {
+		console.log('didnt find that game')
+	}
+}
+
+var leaveGame = function (data, socket) {
+
+	var game = findGame(data.id);
+
+	if(game){
+		game.removeUser(data.username)
+		broadcastGames();
+	} else {
+		console.log('didnt find that game');
+	}
+
+}
 
 var broadcastUsers = function () {
 	io.to('board').emit('users:list', users);
+}
+
+var broadcastGames = function (socket) {
+
+	if(socket){
+		socket.emit('games:list', games);
+	} else {
+		io.sockets.emit('games:list', games);
+	}
+	
 }
 
 
 //SOCKETS!!!
 io.on('connection', function(socket){
 
+	
 	socket.on('board:register', function(){
 		socket.join('board');
 		broadcastUsers();
 	})
 
+	socket.on('user:register', function(){
+		broadcastGames(socket)
+	})
 
+	socket.on('game:join', function(data){
+		joinGame(data, socket)
+	});
+
+	socket.on('game:leave', function(data){
+		leaveGame(data, socket)
+	})
 });
 

@@ -1,25 +1,20 @@
-<div>
+<div class="home">
 	<div class="instruction">
 	    <span ng-if="!games">Loading...</span>
-	    <span ng-if="games.length>0">Select a Game</span>
-	    <span ng-if="games.length==0">There Are No Active Games</span>
+	    <!-- <span ng-if="!games.started">Join a Game</span> -->
+	    <!-- <span ng-if="!games.started">No Games Available</span> -->
 	</div>
 	<div class="list">
 	    <ul class="list-container">
 
-	    <!-- Existing Games -->
-	      <li ng-repeat="game in games" class="list-item">
-	      	<a ng-href="#/game/{{game._id}}"><span class="count">{{game.users.length}}</span>{{game.name}}</a>
+	   	 <!-- Existing Game -->
+	      <li class="list-item" ng-repeat="game in games">
+	      	<a ng-href="#/game/{{game.id}}"><span class="count">{{game.users.length}}</span>Join The Game</a>
 	      </li>
-
-	      <li class="list-item" ng-if="list.creating==true">
-	        <div class="input-container">
-	          <input type="text" id="gameName" ng-model="game.name" placeholder="game Name" ng-focus="list.creating==true" ng-focus-lost="creategame()" ng-keypress="onKeyPress($event)">
-	        </div>
-	      </li>
-	      <li class="list-item list-item-action" ng-if="!list.creating">
-	        <a href ng-click="list.creating=true">Create a game</a>
-	      </li>
+<!-- 
+	      <li class="list-item list-item-action" ng-if="!game.started">
+	        <a href>Join Game</a>
+	      </li> -->
 	    </ul>
 	</div>
 </div>

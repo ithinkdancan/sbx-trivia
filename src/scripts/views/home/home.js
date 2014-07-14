@@ -3,10 +3,20 @@
 *
 * Home Controller
 */
-angular.module('sbx.trivia.controller.home', ['sbx.trivia.directive.springbox'])
+angular.module('sbx.trivia.controller.home', ['sbx.trivia.directive.springbox', 'sbx.trivia.service.socket'])
 
-.controller('homeController', ['$scope', function($scope){
+.controller('homeController', 
+	['$scope', 'socket',
+	function($scope, socket){
 
-	 $scope.list = {};
+	 $scope.games = false;
+
+	 var updateGames = function (games) {
+	 	$scope.games = games;
+	 }
+
+	 socket.emit('user:register');
+
+	 socket.on('games:list', updateGames)
 	
 }])

@@ -2,7 +2,7 @@
 	<h1>Springbox Trivia</h1>
 	<div ng-if="authenticated">
 		<photo-upload upload-callback="onPhotoUpload(data)">
-				<div class="user-image" style="background-image: url({{user.avatar}})"></div>
+			<div ng-if="user.avatar" class="user-image" ng-style="{'background-image':'url('+user.avatar+')'}"></div>
 		</photo-upload>
 		
 	</div>

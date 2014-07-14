@@ -5,6 +5,7 @@ angular.module('sbx.trivia', [
 	'sbx.trivia.controller.login',
 	'sbx.trivia.controller.board',
 	'sbx.trivia.controller.home',
+	'sbx.trivia.controller.game',
 	'sbx.trivia.service.authentication'
 ])
 
@@ -35,6 +36,21 @@ angular.module('sbx.trivia', [
 			 	authenticated: ['authenticationService', '$location', function(authenticationService, $location){
 			 		if(authenticationService.isAuthenticated()){
 			 			$location.path('/');
+			 		}
+			 	}]
+			}
+		})
+
+		.when('/game/:id', {
+			controller: 'gameController',
+			templateUrl: 'views/game/game.tpl.html',
+
+			resolve: {
+
+			 	//make sure the user is logged in before showing the home screen
+			 	authenticated: ['authenticationService', '$location', function(authenticationService, $location){
+			 		if(!authenticationService.isAuthenticated()){
+			 			$location.path('/login')
 			 		}
 			 	}]
 			}

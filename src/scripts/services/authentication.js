@@ -29,6 +29,8 @@ factory('authenticationService', [
 			username = localStorage.getItem('username');
 
 			if(username){
+
+				//get user profile
 				if(!authenticated){
 					authenticated = true;
 					var user = new User();
@@ -36,7 +38,9 @@ factory('authenticationService', [
 						currentUser = data.user;
 					})
 				}
+
  				return true;
+
 			} else {
 				return false;
 			}
@@ -44,6 +48,7 @@ factory('authenticationService', [
 		},
 
 
+		//create a new user
 		register: function (username) {
 
 			var defer =  $q.defer();
@@ -76,7 +81,6 @@ factory('authenticationService', [
 		},
 
 		uploadPhoto: function(photo) {
-			console.log('upload!', photo);
 
 			currentUser.avatar = photo;
 
