@@ -5,7 +5,7 @@
 	<div class="questions">
 		<div class="question-text">{{question.text}}</div>
 		<ul class="options">
-			<li ng-repeat="option in question.options"><a href ng-click="selectAnswer($index)">{{option.text}}</a></li>
+			<li ng-repeat="option in question.options" class="option-item"><a href ng-click="selectAnswer($index)" class="option-link" ng-class="{'selected':$index==selectedAnswer}">{{option.text}}</a></li>
 		</ul>
 	</div>
 </div>

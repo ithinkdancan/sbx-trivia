@@ -1,0 +1,23 @@
+.game {
+	
+	.question-text {
+		text-align: center;
+		padding: 20px;
+	}
+
+	.option-link {
+		display: block;
+		text-decoration: none;
+		background: #FFF;
+		border-radius: 10px;
+		padding: 15px;
+		margin: 15px;
+		border: 1px solid #CCC;
+		color: #000;
+
+		&.selected {
+			border: 1px solid #333;
+		}
+	}
+
+}
