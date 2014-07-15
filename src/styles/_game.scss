@@ -18,6 +18,10 @@
 		&.selected {
 			border: 1px solid #333;
 		}
+
+		&.incorrect {
+			opacity: .5;
+		}
 	}
 
 }

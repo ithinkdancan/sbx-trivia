@@ -30,6 +30,7 @@ game.prototype.update = function () {
 game.prototype.start = function () {
 
 	this.data.started = true;
+	
 	if(typeof this.onGameStart == 'function'){
 		this.onGameStart();
 	}
@@ -49,7 +50,7 @@ game.prototype.next = function () {
 		this.broadcastQuestion(this.currentQuestion);
 
 		setTimeout(function(){
-			// that.broadcastResult.call(that,that.currentQuestion);
+			that.broadcastResult.call(that,that.currentQuestion);
 		},1000)
 
 	} else {
@@ -58,7 +59,10 @@ game.prototype.next = function () {
 };
 
 game.prototype.end = function () {
+
 	this.io.to(this.gameRoom).emit('game:over');
+	this.data.completed = true;
+	
 }
 
 game.prototype.addUser = function(username, socket){

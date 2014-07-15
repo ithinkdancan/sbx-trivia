@@ -30,11 +30,13 @@ angular.module('sbx.trivia.controller.game', ['sbx.trivia.service.socket', 'sbx.
 
 	var updateQuestion = function (data) {
 		$scope.selectedAnswer = false;
+		$scope.correctAnswer = false;
 		$scope.question = data;
 	}
 
 	var showResult = function (data) {
 		console.log('showResult', data);
+		$scope.correctAnswer = data.correctAnswer;
 	}
 
 	//user has selected an answer
