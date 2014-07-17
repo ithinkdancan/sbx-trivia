@@ -4,26 +4,48 @@ var game = function (config) {
 
 	console.log('New Game');
 
+	//Socket Interface
 	this.io = config.io;
+
+	//Event Callbacks
 	this.onGameStart = config.onStart || false;
+	this.onGameEnd = config.onEnd || false;
+	this.onGameResult = config.onResult || false;
+	this.onGameNext = config.onNext || false;
+
+	//Room ID
 	this.id = Date.now();
+
+	//Socket Room Name
 	this.gameRoom = 'game:' + this.id;
+
+	//Current Question Showing
 	this.currentQuestion = -1;
+
+	//Question Status
 	this.questionActive = false;
+
+	//User Answers for each question
 	this.answers = [];
-	this.score = {};
+
+	this.gameDelay = 100;
+
+	this.gameStartDelay = 20000*5;
+
 	
+	//Public Game Data
 	this.data = {
 		id: this.id,
 		users: [],
+		scores: {},
 		started: false,
 		completed: false,
+		startTime: false
 	}
 
 }
 
 game.prototype.update = function () {
-	console.log('sending update', this.data)
 	this.io.to(this.gameRoom).emit('game:update', this.data);
 };
 
@@ -51,7 +73,11 @@ game.prototype.next = function () {
 
 		setTimeout(function(){
 			that.broadcastResult.call(that,that.currentQuestion);
-		},1000)
+		},this.gameDelay)
+
+		if(typeof this.onGameNext == 'function'){
+			this.onGameNext();
+		}
 
 	} else {
 		this.end();
@@ -62,7 +88,11 @@ game.prototype.end = function () {
 
 	this.io.to(this.gameRoom).emit('game:over');
 	this.data.completed = true;
-	
+
+	if(typeof this.onGameEnd == 'function'){
+		this.onGameEnd();
+	}
+
 }
 
 game.prototype.addUser = function(username, socket){
@@ -75,9 +105,13 @@ game.prototype.addUser = function(username, socket){
 		//start the game in in 30 seconds or so
 		var that = this;
 		if(!this.data.started && this.data.users.length == 1){
+
+			this.data.startTime = Date.now() + this.gameStartDelay;
+			
 			setTimeout(function(){
 				that.start()
-			},1000)
+			},this.gameStartDelay)
+
 		}
 
 
@@ -105,6 +139,27 @@ game.prototype.removeUser = function(username, socket){
 	}
 }
 
+game.prototype.calculateScores = function () {
+
+	this.data.scores = {};
+
+	
+	for (var i = 0; i <= this.currentQuestion; i++) {
+		for(username in this.answers[i]){
+			if(this.answers[i][username] == questions[i].correct){
+				if(this.data.scores[username]){
+					this.data.scores[username]++;
+				} else {
+					this.data.scores[username] = 1;
+				}
+			} 
+		}
+	};
+
+	console.log('scores!', this.data.scores);
+
+};
+
 game.prototype.broadcastResult = function (index){
 
 	var that = this;
@@ -117,12 +172,19 @@ game.prototype.broadcastResult = function (index){
 		correctAnswer: question.correct
 	});
 
+	//Update Scores
+	this.calculateScores();
 
+	if(typeof this.onGameResult == 'function'){
+		this.onGameResult();
+	}
+
+	// Show the Next Question
 	setTimeout(function(){
 		that.next.call(that);
-	},1000)
+	},this.gameDelay)
 
-}
+};
 
 game.prototype.broadcastQuestion = function (index, socket){
 	
@@ -140,7 +202,7 @@ game.prototype.broadcastQuestion = function (index, socket){
 			results: []
 		}
 
-		console.log('sending Question', data)
+		console.log('sending Question', data.text)
 		
 		if(socket){
 			socket.emit('game:question', data);

@@ -80,16 +80,51 @@ router.route('/users/:username')
 	})
 app.use('/api', router);
 
+var updateUserScores = function(){
+	//console.log('calculating all scores', games)
+	
+	//Reset Scores
+	users.map(function(user){
+		user.score = 0;
+	})
+
+	//Tally up the scores!
+	games.forEach(function(game){
+		var gameScores = game.data.scores;
+		for(username in gameScores){
+			var user = findUser(username);
+			if(user){
+				user.score += gameScores[username];
+			}
+		}
+	});
+
+	broadcastUsers();
+
+}
+
 
 var createGame = function () {
 	var game = new Game({
 		io:io,
-		onStart: updateGameBoard,
-		onNext: false,
-		onComplete: false
+		onStart: broadcastGamesList,
+		onResult: updateUserScores,
+		onEnd: createGame
 	});
 	games.push(game);
+
+	broadcastGamesList();
 }
+
+var findUser = function (username) {
+
+	var match = users.filter(function(user){ 
+		return user.username == username;
+	});
+
+	return match ? match[0] : false;
+
+};
 
 var findGame = function (id) {
 
@@ -107,7 +142,7 @@ var joinGame = function (data, socket) {
 
 	if(game){
 		game.addUser(data.username, socket);
-		updateGameBoard();
+		broadcastGamesList();
 	} else {
 		console.log('didnt find that game');
 		socket.emit('game:leave', {message: 'Game does not exist'});
@@ -120,7 +155,7 @@ var leaveGame = function (data, socket) {
 
 	if(game){
 		game.removeUser(data.username, socket);
-		updateGameBoard();
+		broadcastGamesList();
 	} else {
 		console.log('didnt find that game');
 	}
@@ -143,7 +178,7 @@ var broadcastUsers = function () {
 	io.to('board').emit('users:list', users);
 }
 
-var updateGameBoard = function (socket) {
+var broadcastGamesList = function (socket) {
 
 	//get only games that are not complete
 	var gamesData = games
@@ -168,7 +203,7 @@ io.on('connection', function(socket){
 	});
 
 	socket.on('user:register', function(){
-		updateGameBoard(socket)
+		broadcastGamesList(socket)
 		broadcastUsers();
 	});
 

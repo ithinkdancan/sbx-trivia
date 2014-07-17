@@ -12,6 +12,9 @@
 	      	<a ng-href="#/game/{{game.id}}" ng-if="!game.started" class="list-link">
 	      		<span class="count">{{game.users.length}}</span>
 	      		Join The Game
+	      		<div ng-show="!game.startTime">Waiting for Players...</div>
+	      		<div ng-show="game.startTime">Games Starts in <span countdown="game.startTime"></span></div>
+	      		
 	      	</a>
 	      	<span ng-if="game.started" class="list-link">
 	      		Game in Progress

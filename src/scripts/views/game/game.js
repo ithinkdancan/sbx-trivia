@@ -41,6 +41,9 @@ angular.module('sbx.trivia.controller.game', ['sbx.trivia.service.socket', 'sbx.
 
 	//user has selected an answer
 	$scope.selectAnswer = function (index) {
+		
+		if($scope.correctAnswer !== false) { return; }
+
 		$scope.selectedAnswer = index;
 
 		socket.emit('question:answer', {

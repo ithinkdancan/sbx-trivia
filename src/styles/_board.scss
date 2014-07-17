@@ -3,6 +3,7 @@
 	.user {
 		float: left;
 		text-align: center;
+		position: relative;
 	}
 	
 	.user-image {
@@ -21,4 +22,17 @@
 			background-size: cover;
 		}
 	}	
+
+	.user-score {
+		position: absolute;
+		top: 80px;
+		left: 80px;
+		width: 40px;
+		height: 40px;
+		background: rgba(0,0,0,.8);
+		border-radius: 50% 50%;
+		color: #fff;
+		text-align: center;
+		line-height: 40px;
+	}
 }
