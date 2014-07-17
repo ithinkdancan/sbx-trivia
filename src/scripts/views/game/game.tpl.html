@@ -1,8 +1,9 @@
 <div class="game">
-	<div class="instructions">
-		<span ng-if="!game.started">Waiting for the game to start</span>
+	<div class="instructions" ng-if="!game.started">
+		<span ng-show="!game.startTime">Waiting for More Players</span>
+		<span ng-show="game.startTime">Game Starts In<br><span countdown="game.startTime"></span></span>
 	</div>
-	<div class="questions">
+	<div class="questions" ng-show="question">
 		<div class="question-text">{{question.text}}</div>
 		<ul class="options">
 			<li ng-repeat="option in question.options" class="option-item"><a href ng-click="selectAnswer($index)" class="option-link" ng-class="{'selected':$index===selectedAnswer, 'correct': correctAnswer>=0 && correctAnswer===$index, 'incorrect': correctAnswer!==false && correctAnswer!==$index }">{{option.text}}</a></li>

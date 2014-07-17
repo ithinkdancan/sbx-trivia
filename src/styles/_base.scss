@@ -3,10 +3,23 @@
 }
 
 body {
-	background: #EEE;
+	background: #FFF;
 	color: RGBA(255, 255, 255, 1);
-	font-family: sans-serif;
+	font-family: "proxima-nova",sans-serif;
   color: #000;
+}
+
+.content {
+  padding-top: 50px;
+}
+
+.instructions {
+  text-align: center;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,.2);
+  background: RGBA(8, 58, 81, .8);
+  color: #FFF;
+  line-height: 135%;
 }
 
 .hidden {

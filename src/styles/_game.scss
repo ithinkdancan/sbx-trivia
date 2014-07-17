@@ -3,24 +3,33 @@
 	.question-text {
 		text-align: center;
 		padding: 20px;
+		border-bottom: 1px solid rgba(0,0,0,.2);
 	}
 
 	.option-link {
 		display: block;
 		text-decoration: none;
-		background: #FFF;
-		border-radius: 10px;
+		background: #EE5a22;
+		// border-radius: 10px;
 		padding: 15px;
 		margin: 15px;
-		border: 1px solid #CCC;
-		color: #000;
+		border: 2px solid transparent;
+		color: #FFF;
 
 		&.selected {
-			border: 1px solid #333;
+			border: 2px solid #333;
 		}
 
 		&.incorrect {
 			opacity: .5;
+		}
+
+		&.incorrect.selected {
+			border-color: #CC0000;
+		}
+
+		&.correct {
+			border-color: green;
 		}
 	}
 

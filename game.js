@@ -32,6 +32,10 @@ var game = function (config) {
 
 	this.gameStartDelay = 20000*5;
 
+	this.requiredPlayers = 2;
+
+	this.startTimeout = false;
+
 	
 	//Public Game Data
 	this.data = {
@@ -104,25 +108,23 @@ game.prototype.addUser = function(username, socket){
 		
 		//start the game in in 30 seconds or so
 		var that = this;
-		if(!this.data.started && this.data.users.length == 1){
+		if(!this.data.started && this.data.users.length == this.requiredPlayers){
 
 			this.data.startTime = Date.now() + this.gameStartDelay;
 			
-			setTimeout(function(){
+			this.startTimeout = setTimeout(function(){
 				that.start()
 			},this.gameStartDelay)
 
 		}
-
-
-	} else {
-
-	}
+	} 
 
 	socket.join(this.gameRoom);
+
 	if(this.questionActive){
 		this.broadcastQuestion(this.currentQuestion, socket);
 	}
+
 	this.update();	
 
 	
@@ -136,7 +138,15 @@ game.prototype.removeUser = function(username, socket){
 		
 		this.data.users.splice(userIndex,1);
 		socket.leave(this.gameRoom);
+
+		if(this.startTimeout && this.data.users.length < this.requiredPlayers){
+			console.log('cancel it!')
+			clearTimeout(this.startTimeout);
+			this.data.startTime = false;
+		}
 	}
+
+	this.update();	
 }
 
 game.prototype.calculateScores = function () {

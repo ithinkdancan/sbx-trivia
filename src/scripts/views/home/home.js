@@ -3,7 +3,11 @@
 *
 * Home Controller
 */
-angular.module('sbx.trivia.controller.home', ['sbx.trivia.directive.countdown', 'sbx.trivia.service.socket'])
+angular.module('sbx.trivia.controller.home', [
+	'sbx.trivia.directive.countdown', 
+	'sbx.trivia.service.socket',
+	'sbx.trivia.directive.springbox'
+])
 
 .controller('homeController', 
 	['$scope', 'socket',

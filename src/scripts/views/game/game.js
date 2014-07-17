@@ -3,7 +3,7 @@
 *
 * Home Controller
 */
-angular.module('sbx.trivia.controller.game', ['sbx.trivia.service.socket', 'sbx.trivia.service.authentication'])
+angular.module('sbx.trivia.controller.game', ['sbx.trivia.service.socket', 'sbx.trivia.service.authentication', 'sbx.trivia.directive.countdown'])
 
 .controller('gameController', 
 	['$scope', 'socket', '$routeParams', 'authenticationService', '$location',

@@ -1,7 +1,7 @@
 <div class="home">
-	<div class="instruction">
+	<div class="instructions">
 	    <span ng-if="!games">Loading...</span>
-	    <!-- <span ng-if="!games.started">Join a Game</span> -->
+	    <span ng-if="games.length">Join a Game</span>
 	    <!-- <span ng-if="!games.started">No Games Available</span> -->
 	</div>
 	<div class="list">
@@ -10,20 +10,16 @@
 	   	 <!-- Existing Game -->
 	      <li class="list-item" ng-repeat="game in games">
 	      	<a ng-href="#/game/{{game.id}}" ng-if="!game.started" class="list-link">
-	      		<span class="count">{{game.users.length}}</span>
-	      		Join The Game
-	      		<div ng-show="!game.startTime">Waiting for Players...</div>
-	      		<div ng-show="game.startTime">Games Starts in <span countdown="game.startTime"></span></div>
+	      		<div class="count">{{game.users.length}} <span class="players"><ng-pluralize count="game.users.length" when="{'one':'player', 'other':'players'}"></ng-pluralize></span></div>
+	      		<div class="name">Springbox Trivia</div>
+	      		<div class="status" ng-show="!game.startTime">Waiting for Players...</div>
+	      		<div class="status" ng-show="game.startTime">Games Starts in <span countdown="game.startTime"></span></div>
 	      		
 	      	</a>
 	      	<span ng-if="game.started" class="list-link">
-	      		Game in Progress
+	      		<div class="name">Game in Progress</div>
 	      	</span>
 	      </li>
-<!-- 
-	      <li class="list-item list-item-action" ng-if="!game.started">
-	        <a href>Join Game</a>
-	      </li> -->
-	    </ul>
+
 	</div>
 </div>

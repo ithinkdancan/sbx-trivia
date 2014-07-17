@@ -1,21 +1,33 @@
 header {
-	position: relative;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
 	text-align: center;
 	height: 50px;
 	line-height: 50px;
 	background: #000;
 	color: #FFF;
 
+	.logo {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 140px;
+	}
+
 	.photo-uploader {
 		width: 30px;
 		height: 30px;
 		border-radius: 15px;
-		background: #FFF;
 		position: absolute;
 		left: 15px;
 		top: 50%;
 		transform: translateY(-50%);
 		overflow: hidden;
+		background: #FFF url(../images/small35.png) center center no-repeat;
+		background-size: contain;
 
 		a {
 			display: block;
