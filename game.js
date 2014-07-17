@@ -28,7 +28,7 @@ var game = function (config) {
 	//User Answers for each question
 	this.answers = [];
 
-	this.gameDelay = 100;
+	this.gameDelay = 5000;
 
 	this.gameStartDelay = 20000*5;
 
