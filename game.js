@@ -165,9 +165,6 @@ game.prototype.calculateScores = function () {
 			} 
 		}
 	};
-
-	console.log('scores!', this.data.scores);
-
 };
 
 game.prototype.broadcastResult = function (index){

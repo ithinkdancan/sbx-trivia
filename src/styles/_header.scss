@@ -42,4 +42,19 @@ header {
 		background-size: cover;
 		background-position: center center;
 	}
+
+	.no-avatar .photo-uploader {
+		animation: shake 10s infinite linear;
+	}
+}
+
+@keyframes shake {
+	0%, 30% { transform: translateY(-50%) rotate(0deg); }
+	31% { transform: translateY(-50%) rotate(5deg); }
+	32%	 { transform: translateY(-50%) rotate(-5deg); }
+	33% { transform: translateY(-50%) rotate(5deg); }
+	34%	 { transform: translateY(-50%) rotate(-5deg); }
+	35% { transform: translateY(-50%) rotate(5deg); }
+	36%	 { transform: translateY(-50%) rotate(-5deg); }
+	37%, 100% { transform: translateY(-50%) rotate(0deg); }
 }
