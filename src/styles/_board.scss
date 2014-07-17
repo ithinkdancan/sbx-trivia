@@ -7,11 +7,11 @@
 	}
 	
 	.user-image {
-		width: 100px;
-		height: 100px;
+		width: 160px;
+		height: 160px;
 		border-radius: 50% 50%;
 		overflow: hidden;
-		margin: 20px;
+		margin: 20px 40px;
 		background-color: #000;
 		
 
@@ -25,14 +25,26 @@
 
 	.user-score {
 		position: absolute;
-		top: 80px;
-		left: 80px;
-		width: 40px;
-		height: 40px;
-		background: rgba(0,0,0,.8);
+		top: 100px;
+		left: 150px;
+		width: 80px;
+		height: 80px;
+		background: RGBA(238, 90, 34, .95);
 		border-radius: 50% 50%;
 		color: #fff;
+		font-size: 20px;
 		text-align: center;
-		line-height: 40px;
+
+		.inner {
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.label {
+			display: block;
+			font-size: 12px;
+		}
 	}
 }

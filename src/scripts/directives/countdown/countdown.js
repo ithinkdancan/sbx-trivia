@@ -28,6 +28,10 @@ angular.module('sbx.trivia.directive.countdown', [])
 		$scope.minutes = diff < 0 ? 0 : Math.floor(diff/60)%60;
 		$scope.seconds = diff < 0 ? 0 : Math.floor(diff%60);
 
+		if($scope.minutes < 10){
+			$scope.minutes = '0' + $scope.minutes;
+		}
+
 		if($scope.seconds < 10){
 			$scope.seconds = '0' + $scope.seconds;
 		}

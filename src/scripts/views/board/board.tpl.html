@@ -4,7 +4,7 @@
 			<div class="user-image">
 				<div ng-if="user.avatar" ng-style="{'background-image':'url('+user.avatar+')'}"></div>
 			</div>
-			<div class="user-score">{{user.score}}</div>
+			<div class="user-score"><span class="inner">{{user.score}}<span class="label"><ng-pluralize count="user.score" when="{'one':'point', 'other':'points'}"></ng-pluralize></span></span></div>
 			<div class="user-name">{{user.username}}</div>
 		</li>
 	</ul>
