@@ -4,6 +4,8 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var router = express.Router();
 var bodyParser = require('body-parser');
+var fs = require("fs");
+var mkdirp = require('mkdirp');
 
 
 var User = require('./user.js');
@@ -74,9 +76,20 @@ router.route('/users/:username')
 
 			matchingUser.avatar = req.body.avatar;
 
-			broadcastUsers();
+			var base64Data = matchingUser.avatar.replace(/^data:image\/png;base64,/, "");
+			mkdirp('dist/uploads', function (err) {
+				fs.writeFile('dist/uploads/' + matchingUser.username + ".png", base64Data, 'base64', function(err) {
+					 matchingUser.avatar =  encodeURI('/uploads/' + matchingUser.username + ".png");
 
-		res.json({ success: true, user: matchingUser[0] });
+					 res.json({ success: true, user: matchingUser });
+
+					 broadcastUsers();
+				});
+			});
+
+			
+
+		
 	})
 app.use('/api', router);
 

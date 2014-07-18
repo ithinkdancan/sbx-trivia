@@ -7,10 +7,17 @@ angular.module('sbx.trivia', [
 	'sbx.trivia.controller.board',
 	'sbx.trivia.controller.home',
 	'sbx.trivia.controller.game',
+	'sbx.trivia.controller.photo',
 	'sbx.trivia.service.authentication'
 ])
 
 .config(['$routeProvider', function($routeProvider){
+
+	var authResolver = ['authenticationService', '$location', function(authenticationService, $location){
+ 		if(!authenticationService.isAuthenticated()){
+ 			$location.path('/login')
+ 		}
+ 	}]
 
 	$routeProvider
 
@@ -20,11 +27,7 @@ angular.module('sbx.trivia', [
 			resolve: {
 
 			 	//make sure the user is logged in before showing the home screen
-			 	authenticated: ['authenticationService', '$location', function(authenticationService, $location){
-			 		if(!authenticationService.isAuthenticated()){
-			 			$location.path('/login')
-			 		}
-			 	}]
+			 	authenticated: authResolver
 			}
 		})
 
@@ -42,18 +45,21 @@ angular.module('sbx.trivia', [
 			}
 		})
 
+		.when('/photo', {
+			controller: 'photoController',
+			templateUrl: 'views/photo/photo.tpl.html',
+			resolve: {
+			 	//make sure the user is logged in before showing the home screen
+			 	authenticated: authResolver
+			}
+		})
+
 		.when('/game/:id', {
 			controller: 'gameController',
 			templateUrl: 'views/game/game.tpl.html',
-
 			resolve: {
-
 			 	//make sure the user is logged in before showing the home screen
-			 	authenticated: ['authenticationService', '$location', function(authenticationService, $location){
-			 		if(!authenticationService.isAuthenticated()){
-			 			$location.path('/login')
-			 		}
-			 	}]
+			 	authenticated: authResolver
 			}
 		})
 

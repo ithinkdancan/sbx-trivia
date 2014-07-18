@@ -86,7 +86,10 @@ factory('authenticationService', [
 
 			var user = new User(currentUser);
 
-			user.$save({username: username}).then(function(){
+			user.$save({username: username}).then(function(data){
+				if(data.success && data.user){
+					currentUser = data.user;
+				}
 				console.log('uploadPhoto got something', arguments);
 			})
 		}

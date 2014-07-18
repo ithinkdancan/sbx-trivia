@@ -30,9 +30,9 @@ var game = function (config) {
 
 	this.gameDelay = 5000;
 
-	this.gameStartDelay = 20000*5;
+	this.gameStartDelay = 2000*5;
 
-	this.requiredPlayers = 2;
+	this.requiredPlayers = 1;
 
 	this.startTimeout = false;
 
@@ -121,7 +121,7 @@ game.prototype.addUser = function(username, socket){
 
 	socket.join(this.gameRoom);
 
-	if(this.questionActive){
+	if(this.currentQuestion >= 0){
 		this.broadcastQuestion(this.currentQuestion, socket);
 	}
 

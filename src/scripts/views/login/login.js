@@ -10,8 +10,7 @@ angular.module('sbx.trivia.controller.login', ['sbx.trivia.service.authenticatio
 	function ($scope,   authenticationService,   $location){
 
 		var success = function () {
-			console.log('success!');
-			$location.path('/');
+			$location.path('/photo');
 		}
 
 		var failure = function () {

@@ -2,7 +2,7 @@
 	<h1><img src="images/logo.png" class="logo"></h1>
 	<div ng-if="authenticated">
 		<div ng-class="{'no-avatar':!user.avatar}">
-			<photo-upload upload-callback="onPhotoUpload(data)">
+			<photo-upload>
 					<div ng-if="user.avatar" class="user-image"  ng-style="{'background-image':'url('+user.avatar+')'}"></div>
 			</photo-upload>
 		</div>

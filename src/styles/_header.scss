@@ -17,7 +17,7 @@ header {
 		width: 140px;
 	}
 
-	.photo-uploader {
+	.file-uploader {
 		width: 30px;
 		height: 30px;
 		border-radius: 15px;
@@ -26,7 +26,7 @@ header {
 		top: 50%;
 		transform: translateY(-50%);
 		overflow: hidden;
-		background: #FFF url(../images/small35.png) center center no-repeat;
+		background-color: #1d1d1d;
 		background-size: contain;
 
 		a {
@@ -37,14 +37,19 @@ header {
 	}
 
 	.user-image {
+		position: absolute;
+		top: 0;
+		left: 0;
 		width: 100%;
 		height: 100%;
 		background-size: cover;
 		background-position: center center;
 	}
 
-	.no-avatar .photo-uploader {
+	.no-avatar .file-uploader {
 		animation: shake 10s infinite linear;
+		background: #FFFFFF  url(../images/small35.png) center center no-repeat;
+		background-size: contain;
 	}
 }
 

@@ -1,0 +1,9 @@
+<div class="photo">
+	<div class="instructions">Upload a Photo</div>
+	<div ng-class="{'no-avatar':!user.avatar}">
+		<photo-upload>
+				<div ng-if="user.avatar" class="user-image"  ng-style="{'background-image':'url('+user.avatar+')'}"></div>
+		</photo-upload>
+	</div>
+	<div><a href="#/" class="buton">{{user.avatar ? "Next" : "Skip"}}</a></div>
+</div>
