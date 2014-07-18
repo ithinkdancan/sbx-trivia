@@ -6,7 +6,7 @@
 	<div class="questions" ng-show="question">
 		<div class="question-text instructions">{{question.text}}</div>
 		<ul class="options">
-			<li ng-repeat="option in question.options" class="option-item"><a href ng-click="selectAnswer($index)" class="option-link" ng-class="{'selected':$index===selectedAnswer, 'correct': correctAnswer>=0 && correctAnswer===$index, 'incorrect': correctAnswer!==false && correctAnswer!==$index }">{{option.text}}</a></li>
+			<li ng-repeat="option in question.options" class="option-item"><a href ng-click="selectAnswer($index)" class="option-link" ng-class="{'selected':$index===selectedAnswer, 'correct': correctAnswer>=0 && correctAnswer===$index, 'incorrect': correctAnswer!==false && correctAnswer!==$index }"><span class="option-text">{{option.text}}</span></a></li>
 		</ul>
 	</div>
 </div>

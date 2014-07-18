@@ -10,15 +10,34 @@
 	.option-link {
 		display: block;
 		text-decoration: none;
-		background: #EE5a22;
-		// border-radius: 10px;
-		padding: 15px;
+		background: #d9d9d9;
+		padding: 0 15px 0 50px;
 		margin: 15px;
-		border: 2px solid transparent;
-		color: #FFF;
+		position: relative;
+		overflow: hidden;
+		color: #1d1d1d;
+		transition: all .2s;
 
-		&.selected {
-			border: 2px solid #333;
+		.option-text {
+			display: block;
+			padding: 15px 0;
+		}
+
+		&:before {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			height: 100%;
+			width: 40px;
+			border-right: 3px solid #FFF;
+			background: RGBA(69, 204, 141, 1);
+
+		}
+
+		&.selected:before {
+			// border: 2px solid #333;
+			background: #EE5a22;
 		}
 
 		&.incorrect {
@@ -26,11 +45,11 @@
 		}
 
 		&.incorrect.selected {
-			border-color: #CC0000;
+			// border-color: #CC0000;
 		}
 
-		&.correct {
-			border-color: green;
+		&.correct:before {
+			// background: RGBA(70, 204, 105, 1);
 		}
 	}
 

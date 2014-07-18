@@ -6,7 +6,7 @@ header {
 	text-align: center;
 	height: 50px;
 	line-height: 50px;
-	background: #000;
+	background: #1d1d1d;
 	color: #FFF;
 
 	.logo {
@@ -50,11 +50,11 @@ header {
 
 @keyframes shake {
 	0%, 30% { transform: translateY(-50%) rotate(0deg); }
-	31% { transform: translateY(-50%) rotate(5deg); }
-	32%	 { transform: translateY(-50%) rotate(-5deg); }
-	33% { transform: translateY(-50%) rotate(5deg); }
-	34%	 { transform: translateY(-50%) rotate(-5deg); }
-	35% { transform: translateY(-50%) rotate(5deg); }
-	36%	 { transform: translateY(-50%) rotate(-5deg); }
+	31% { transform: translateY(-50%) rotate(10deg); }
+	32%	 { transform: translateY(-50%) rotate(-10deg); }
+	33% { transform: translateY(-50%) rotate(10deg); }
+	34%	 { transform: translateY(-50%) rotate(-10deg); }
+	35% { transform: translateY(-50%) rotate(10deg); }
+	36%	 { transform: translateY(-50%) rotate(-10deg); }
 	37%, 100% { transform: translateY(-50%) rotate(0deg); }
 }
