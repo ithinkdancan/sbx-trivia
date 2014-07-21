@@ -30,7 +30,7 @@ var game = function (config) {
 
 	this.gameDelay = 5000;
 
-	this.gameStartDelay = 2000*5;
+	this.gameStartDelay = 2000;
 
 	this.requiredPlayers = 1;
 
@@ -205,6 +205,7 @@ game.prototype.broadcastQuestion = function (index, socket){
 		var data = {
 			id: index,
 			text : question.text,
+			image : question.image || false,
 			options: question.options,
 			results: []
 		}

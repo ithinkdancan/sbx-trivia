@@ -16,26 +16,29 @@ angular.module('sbx.trivia.controller.game', ['sbx.trivia.service.socket', 'sbx.
 
 	var updateGame = function (game) {
 	 	$scope.game = game;
-	 	console.log('game update', $scope.game )
+	 	console.log('game update:', $scope.game )
 
 	 	//redirect if game is completed
 	 	if($scope.game.completed){
 	 		$location.path('/');
-	 	}
+	 	} 
 	}
 
 	var leaveGame = function () {
 		$location.path('/');
 	}
 
+	//Change the question
 	var updateQuestion = function (data) {
+		console.log('question updates: ', data);
 		$scope.selectedAnswer = false;
 		$scope.correctAnswer = false;
 		$scope.question = data;
 	}
 
+	//Show the correct answer
 	var showResult = function (data) {
-		console.log('showResult', data);
+		console.log('show result:', data);
 		$scope.correctAnswer = data.correctAnswer;
 	}
 

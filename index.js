@@ -94,7 +94,6 @@ router.route('/users/:username')
 app.use('/api', router);
 
 var updateUserScores = function(){
-	//console.log('calculating all scores', games)
 	
 	//Reset Scores
 	users.map(function(user){

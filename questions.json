@@ -1,6 +1,7 @@
 [
 	{
 		"text" : "How many total cans did we collect for the food drive?",
+		"image" : "images/logo.png",
 		"options" :  [
 			{ "text": "314"},
 			{ "text": "276"},
