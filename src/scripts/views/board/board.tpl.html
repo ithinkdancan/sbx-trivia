@@ -1,8 +1,10 @@
 <div class="board" ng-class="{active: game.started}">
 		<div class="view leaderboard">
 			<div class="game-list">
-				<span class="text" ng-if="!game.startTime">Waiting for Players</span>
-				<span class="text" ng-if="game.startTime">Starts in <span countdown="game.startTime" base="game.currentTime"></span></span>
+				<div countdown-chart="game.startTime" base="game.currentTime">
+					<span class="text" ng-if="!game.startTime">Waiting for Players</span>
+					<span class="text" ng-if="game.startTime">Starts in <span countdown="game.startTime" base="game.currentTime"></span></span>
+				</div>
 			</div>
 			<div class="user-list">
 				<ul>

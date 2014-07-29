@@ -3,7 +3,7 @@
 *
 * Description
 */
-angular.module('sbx.trivia.controller.board', ['sbx.trivia.service.socket'])
+angular.module('sbx.trivia.controller.board', ['sbx.trivia.service.socket', 'sbx.trivia.directive.countdown-chart'])
 
 .controller('boardController', 
 		  	['$scope', 'socket', '$interval',
