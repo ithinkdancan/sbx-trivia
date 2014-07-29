@@ -194,7 +194,7 @@ var broadcastGamesList = function (socket) {
 
 	//get only games that are not complete
 	var gamesData = games
-		.map(function(obj){ return obj.data; })
+		.map(function(obj){ obj.data.currentTime = Date.now(); return obj.data; })
 		.filter(function(obj){ return obj.completed == false; });
 
 	if(socket){
@@ -212,6 +212,7 @@ io.on('connection', function(socket){
 	socket.on('board:register', function(){
 		socket.join('board');
 		broadcastUsers();
+		broadcastGamesList(socket)
 	});
 
 	socket.on('user:register', function(){
@@ -234,4 +235,10 @@ io.on('connection', function(socket){
 });
 
 createGame();
+
+for (var i = 0; i < 100; i++) {
+	var user = new User('user-' + i);
+	user.avatar = 'http://lorempixel.com/200/200/?id='+users.length;
+	users.push(user);
+};
 

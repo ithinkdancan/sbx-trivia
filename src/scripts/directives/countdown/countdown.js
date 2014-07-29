@@ -9,7 +9,8 @@ angular.module('sbx.trivia.directive.countdown', [])
 	return {
 		restrict: 'EA',
 		scope: {
-			countdown: '='
+			countdown: '=',
+			base: '='
 		},
 		controller: 'countdownController',
 		templateUrl: 'directives/countdown/countdown.tpl.html',
@@ -17,13 +18,20 @@ angular.module('sbx.trivia.directive.countdown', [])
 }])
 .controller('countdownController', ['$scope', '$interval', function($scope, $interval){
 
-	$scope.diff = 0;
+	// $scope.diff = 0;
+	$scope.offset = 0;
+	// $scope.base = Date.now();
+
+	var calculateOffset = function (base){
+		if(!base){ return; }
+		$scope.offset = $scope.base - (Date.now());
+	}
 
 	var calculate = function () {
 
 		if(!$scope.countdown) { return; }
 
-		diff = $scope.countdown/1000 - Date.now()/1000;
+		diff = $scope.countdown/1000 - Date.now()/1000 - $scope.offset/1000;
 
 		$scope.minutes = diff < 0 ? 0 : Math.floor(diff/60)%60;
 		$scope.seconds = diff < 0 ? 0 : Math.floor(diff%60);
@@ -44,6 +52,8 @@ angular.module('sbx.trivia.directive.countdown', [])
 		$interval.cancel(countdownInterval)
 	})
 
+	$scope.$watch('base', calculateOffset);
 	$scope.$watch('countdown', calculate);
+	
 	
 }])

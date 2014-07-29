@@ -1,4 +1,10 @@
 .game {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	background: #FFF;
 	
 	.question-text {
 		text-align: center;
@@ -44,8 +50,8 @@
 			opacity: .5;
 		}
 
-		&.incorrect.selected {
-			// border-color: #CC0000;
+		&.incorrect.selected:before {
+			background: #CC0000;
 		}
 
 		&.correct:before {

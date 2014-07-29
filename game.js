@@ -28,9 +28,9 @@ var game = function (config) {
 	//User Answers for each question
 	this.answers = [];
 
-	this.gameDelay = 5000;
+	this.gameDelay = 500;
 
-	this.gameStartDelay = 2000;
+	this.gameStartDelay = 10000;
 
 	this.requiredPlayers = 1;
 
@@ -44,12 +44,14 @@ var game = function (config) {
 		scores: {},
 		started: false,
 		completed: false,
-		startTime: false
+		startTime: false,
+		currentTime: false
 	}
 
 }
 
 game.prototype.update = function () {
+	this.data.currentTime = Date.now();
 	this.io.to(this.gameRoom).emit('game:update', this.data);
 };
 
@@ -67,7 +69,6 @@ game.prototype.start = function () {
 
 game.prototype.next = function () {
 
-	var that = this;
 	this.currentQuestion++;
 
 	if(questions[this.currentQuestion]){
@@ -75,9 +76,7 @@ game.prototype.next = function () {
 		this.questionActive = true;
 		this.broadcastQuestion(this.currentQuestion);
 
-		setTimeout(function(){
-			that.broadcastResult.call(that,that.currentQuestion);
-		},this.gameDelay)
+		setTimeout(this.broadcastResult.bind(this,this.currentQuestion) ,this.gameDelay);
 
 		if(typeof this.onGameNext == 'function'){
 			this.onGameNext();
@@ -107,15 +106,9 @@ game.prototype.addUser = function(username, socket){
 		this.data.users.push(username);
 		
 		//start the game in in 30 seconds or so
-		var that = this;
 		if(!this.data.started && this.data.users.length == this.requiredPlayers){
-
 			this.data.startTime = Date.now() + this.gameStartDelay;
-			
-			this.startTimeout = setTimeout(function(){
-				that.start()
-			},this.gameStartDelay)
-
+			this.startTimeout = setTimeout(this.start.bind(this), this.gameStartDelay);
 		}
 	} 
 
@@ -169,7 +162,6 @@ game.prototype.calculateScores = function () {
 
 game.prototype.broadcastResult = function (index){
 
-	var that = this;
 	var question = questions[index];
 
 	this.questionActive = false;
@@ -187,9 +179,7 @@ game.prototype.broadcastResult = function (index){
 	}
 
 	// Show the Next Question
-	setTimeout(function(){
-		that.next.call(that);
-	},this.gameDelay)
+	setTimeout(this.next.bind(this), this.gameDelay);
 
 };
 
@@ -216,6 +206,7 @@ game.prototype.broadcastQuestion = function (index, socket){
 			socket.emit('game:question', data);
 		} else {
 			this.io.to(this.gameRoom).emit('game:question', data);
+			this.io.to('board').emit('game:question', data);
 		}
 
 		// broadcastNumResponses();

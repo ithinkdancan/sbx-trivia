@@ -1,7 +1,7 @@
 <div class="game">
 	<div class="instructions" ng-if="!game.started">
 		<span ng-show="!game.startTime">Waiting for More Players</span>
-		<span ng-show="game.startTime">Game Starts In<br><span countdown="game.startTime"></span></span>
+		<span ng-show="game.startTime">Game Starts In<br><span countdown="game.startTime" base="game.currentTime"></span></span>
 	</div>
 	<div class="questions" ng-show="question">
 		<div class="question-text instructions">{{question.text}}</div>

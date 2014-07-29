@@ -1,12 +1,21 @@
-<div class="board">
-	<div class="instructions">ten.springbox.com</div>
-	<ul>
-		<li ng-repeat="user in users" class="user">
-			<div class="user-image">
-				<div ng-if="user.avatar" ng-style="{'background-image':'url('+user.avatar+')'}"></div>
+<div class="board" ng-class="{active: game.started}">
+		<div class="view leaderboard">
+			<div class="game-list">
+				<span class="text" ng-if="!game.startTime">Waiting for Players</span>
+				<span class="text" ng-if="game.startTime">Starts in <span countdown="game.startTime" base="game.currentTime"></span></span>
 			</div>
-			<div class="user-score"><span class="inner">{{user.score}}<span class="label"><ng-pluralize count="user.score" when="{'one':'point', 'other':'points'}"></ng-pluralize></span></span></div>
-			<div class="user-name">{{user.username}}</div>
-		</li>
-	</ul>
+			<div class="user-list">
+				<ul>
+				<li ng-repeat="user in visibleUsers" class="user" ng-class="getGridPos($index)">
+					<div class="user-image">
+						<div ng-if="user.avatar" ng-style="{'background-image':'url('+user.avatar+')'}"></div>
+					</div>
+				</li>
+
+			</div>
+		</div>
+		<div class="view current-game">
+			Status
+		</div>
+	</div>
 </div>

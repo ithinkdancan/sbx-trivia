@@ -10,7 +10,28 @@ body {
 }
 
 .content {
-  padding-top: 50px;
+  // padding-top: 50px;
+  transition: all .3s;
+
+  &.ng-enter .game {
+    transform: translateY(100%);
+    transition: transform .3s ease-in-out;
+  }
+
+  &.ng-enter-active .game {
+    transform: translateY(0);
+  }
+
+  &.ng-leave .game {
+    transform: translateY(0);
+    transition: transform .3s ease-in-out;
+    z-index: 3;
+  }
+
+  &.ng-leave-active .game {
+    transform: translateY(100%);
+  }
+
 }
 
 .instructions {
@@ -31,3 +52,4 @@ body {
   height: 0;
   width: 0;
 }
+
