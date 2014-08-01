@@ -28,9 +28,11 @@ var game = function (config) {
 	//User Answers for each question
 	this.answers = [];
 
-	this.gameDelay = 500;
+	this.gameDelay = 2000;
 
-	this.gameStartDelay = 10000;
+	this.gameOverDelay = 2000;
+
+	this.gameStartDelay = 2000;
 
 	this.requiredPlayers = 1;
 
@@ -89,8 +91,9 @@ game.prototype.next = function () {
 
 game.prototype.end = function () {
 
-	this.io.to(this.gameRoom).emit('game:over');
 	this.data.completed = true;
+
+	setTimeout(this.broadcastEnd.bind(this) ,this.gameOverDelay);
 
 	if(typeof this.onGameEnd == 'function'){
 		this.onGameEnd();
@@ -159,6 +162,19 @@ game.prototype.calculateScores = function () {
 		}
 	};
 };
+
+game.prototype.broadcastEnd = function () {
+
+	//send the message
+	this.io.to(this.gameRoom).emit('game:over');
+	var roomName = this.gameRoom;
+
+	//empty the room
+	this.io.sockets.in(this.gameRoom).sockets.forEach(function(s){
+	    s.leave(roomName);
+	});
+
+}
 
 game.prototype.broadcastResult = function (index){
 

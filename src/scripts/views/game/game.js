@@ -81,12 +81,14 @@ angular.module('sbx.trivia.controller.game', ['sbx.trivia.service.socket', 'sbx.
 	socket.on('game:question', updateQuestion);
 	socket.on('game:result', showResult);
 	socket.on('game:leave', leaveGame);
+	socket.on('game:over', leaveGame);
 
 	$scope.$on('$destroy', function(){
 		socket.removeListener('game:update', updateGame);
 		socket.removeListener('game:question', updateQuestion);
 		socket.removeListener('game:result', showResult);
 		socket.removeListener('game:leave', leaveGame);
+		socket.removeListener('game:over', leaveGame);
 	})
 	
 }])
