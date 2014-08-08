@@ -32,7 +32,7 @@ var game = function (config) {
 
 	this.gameOverDelay = 5000;
 
-	this.gameStartDelay = 60000;
+	this.gameStartDelay = 30000;
 
 	this.requiredPlayers = 1;
 
