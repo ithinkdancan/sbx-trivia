@@ -10,7 +10,9 @@ angular.module('sbx.trivia.directive.question', [])
 		restrict: 'EA',
 		scope: {
 			question: '=',
-			correctAnswer: '='
+			correctAnswer: '=',
+			selectedAnswer: '=',
+			selectAnswer: '&'
 		},
 		controller: 'questionController',
 		templateUrl: 'directives/question/question.tpl.html'

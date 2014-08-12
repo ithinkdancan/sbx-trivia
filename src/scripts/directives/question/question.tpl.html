@@ -5,6 +5,6 @@
 		<img ng-src="{{question.image}}">
 	</div>
 	<ul class="options">
-		<li ng-repeat="option in question.options" class="option-item"><a href ng-click="selectAnswer($index)" class="option-link" ng-class="{'selected':$index===selectedAnswer, 'correct': correctAnswer>=0 && correctAnswer===$index, 'incorrect': correctAnswer!==false && correctAnswer!==$index }"><span class="option-text">{{option.text}}</span></a></li>
+		<li ng-repeat="option in question.options" class="option-item"><a href ng-click="selectAnswer({selectedAnswer:$index})" class="option-link" ng-class="{'selected':$index===selectedAnswer, 'correct': correctAnswer>=0 && correctAnswer===$index, 'incorrect': correctAnswer!==false && correctAnswer!==$index }"><span class="option-text">{{option.text}}</span></a></li>
 	</ul>
 </div>

@@ -23,13 +23,15 @@
 	}
 	
 	.username {
-		width: 90%;
-		margin: 0 auto 5px auto;
-		padding: 10px;
+		display: block;
+		width: 100%;
+		margin-bottom: 10px;
+		padding: 15px 0;
 		border-radius: 3px;
 		border: none;
 		background: #FFF;
 		font-size: 18px;
 		text-align: center;
+		box-sizing: border-box;
 	}
 }

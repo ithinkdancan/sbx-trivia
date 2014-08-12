@@ -7,11 +7,14 @@ body {
 	color: RGBA(255, 255, 255, 1);
 	font-family: "proxima-nova",sans-serif;
   font-weight: 100;
+
   color: #000;
 }
 
 input {
   font-family: "proxima-nova",sans-serif;
+  font-weight: 100;
+  letter-spacing: 1px;
 }
 
 .content {
@@ -55,16 +58,18 @@ input {
 
 .button {
   display: block;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   text-align: center;
   text-decoration: none;
   background: RGBA(237, 91, 34, 1);
   border: none;
-  padding: 10px 0;
+  padding: 15px 0;
   color: #FFF;
   text-transform: uppercase;
   font-size: 18px;
+  -webkit-appearance: none;
+  border-radius: 5px;
 }
 
 .hidden {

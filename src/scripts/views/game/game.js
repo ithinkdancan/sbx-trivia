@@ -49,6 +49,8 @@ angular.module('sbx.trivia.controller.game', [
 
 	//user has selected an answer
 	$scope.selectAnswer = function (index) {
+
+		console.log('selecting an answer!', arguments);
 		
 		if($scope.correctAnswer !== false) { return; }
 

@@ -20,6 +20,10 @@ angular.module('sbx.trivia.controller.home', [
 	 	$scope.games = games;
 	 }
 
+	 $scope.logout = function (){
+	 	localStorage.removeItem('username');
+	 }
+
 	 socket.emit('user:register');
 
 	 socket.on('games:list', updateGames)

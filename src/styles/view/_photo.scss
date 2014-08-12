@@ -6,6 +6,7 @@
 	width: 100%;
 	height: 100%;
 	background: $defaultColor;
+	z-index: 1001;
 
 	.file-uploader{
 		display: block;
@@ -24,6 +25,11 @@
 			width: 100%;
 			height: 100%;
 		}
+	}
+
+	.button-container {
+		width: 90%;
+		margin: 0 auto;
 	}
 
 	.user-image {
