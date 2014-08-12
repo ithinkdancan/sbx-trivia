@@ -18,15 +18,6 @@ input {
   // padding-top: 50px;
   transition: all .3s;
 
-  &.ng-enter .game {
-    transform: translateY(100%);
-    transition: transform .3s ease-in-out;
-  }
-
-  &.ng-enter-active .game {
-    transform: translateY(0);
-  }
-
   &.ng-leave .game,
   &.ng-leave .leave-slide-down {
     transform: translateY(0);
@@ -43,10 +34,12 @@ input {
   &.ng-enter .enter-slide-up {
      transition: transform .3s ease-in-out;
      transform: translateY(100%);
+     z-index: 1001;
   }
 
   &.ng-enter-active .enter-slide-up {
     transform: translateY(0);
+    z-index: 1001;
   }
 
 }
