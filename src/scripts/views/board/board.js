@@ -55,6 +55,10 @@ angular.module('sbx.trivia.controller.board', [
 
 		socket.on('users:list', function(data){
 			$scope.users = data;
+
+			if(!$scope.game.users.length){
+				$scope.displayedUsers = $scope.users;
+			}
 		});
 
 		socket.on('games:list', function(games){

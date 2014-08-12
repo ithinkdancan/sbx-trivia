@@ -248,7 +248,7 @@ io.on('connection', function(socket){
 
 createGame();
 
-for (var i = 0; i < 25; i++) {
+for (var i = 0; i < 6; i++) {
 	var user = new User('user-' + i);
 	user.avatar = 'http://lorempixel.com/200/200/?id='+users.length;
 	users.push(user);
