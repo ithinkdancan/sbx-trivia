@@ -1,10 +1,9 @@
-<form class="trivia-login" ng-submit="createTeam()">
-	<div class="instructions"><label>Enter Your Name</label></div>
-	<div>
-    	
+<div class="login home">	
+	<form class="login-form" ng-submit="createTeam()">
+		<div><img src="images/logo.png" class="logo"></div>
     	<div>
-    		<input type="text" ng-model="username" />
+    		<input class="username" type="text" ng-model="username" placeholder="Your Name" />
     	</div>
-    	<input type="submit" value="Submit" />
-	</div>
-</form>
+    	<input class="button" type="submit" value="Submit" />
+	</form>
+</div>

@@ -1,4 +1,4 @@
-* {
+*, *:after, *:before {
 	box-sizing: border-box;
 }
 
@@ -8,6 +8,10 @@ body {
 	font-family: "proxima-nova",sans-serif;
   font-weight: 100;
   color: #000;
+}
+
+input {
+  font-family: "proxima-nova",sans-serif;
 }
 
 .content {
@@ -23,14 +27,26 @@ body {
     transform: translateY(0);
   }
 
-  &.ng-leave .game {
+  &.ng-leave .game,
+  &.ng-leave .leave-slide-down {
     transform: translateY(0);
     transition: transform .3s ease-in-out;
     z-index: 3;
   }
 
-  &.ng-leave-active .game {
+  &.ng-leave-active .game,
+  &.ng-leave-active .leave-slide-down {
     transform: translateY(100%);
+  }
+
+
+  &.ng-enter .enter-slide-up {
+     transition: transform .3s ease-in-out;
+     transform: translateY(100%);
+  }
+
+  &.ng-enter-active .enter-slide-up {
+    transform: translateY(0);
   }
 
 }
@@ -42,6 +58,20 @@ body {
   background: $bgAccentColor;
   color: #FFF;
   line-height: 135%;
+}
+
+.button {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  text-align: center;
+  text-decoration: none;
+  background: RGBA(237, 91, 34, 1);
+  border: none;
+  padding: 10px 0;
+  color: #FFF;
+  text-transform: uppercase;
+  font-size: 18px;
 }
 
 .hidden {

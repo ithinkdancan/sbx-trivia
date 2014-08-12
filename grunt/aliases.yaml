@@ -8,6 +8,7 @@ build:
 - 'concat'
 - 'uglify'
 - 'pngmin'
+- 'imagemin'
 
 default:
 - 'build'

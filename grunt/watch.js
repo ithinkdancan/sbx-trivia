@@ -53,6 +53,14 @@ module.exports = {
         }
     },
 
+    images: {
+        files: [ '<%= paths.src %>/images/**/*.{gif,jpeg,jpg}' ],
+        tasks: [ 'newer:imagemin'],
+        options: {
+            livereload: false
+        }
+    },
+
     optimizedImages: {
         files: [ '<%= paths.dist %>/images/**/*.{gif,jpeg,jpg,png}' ],
         options: {
