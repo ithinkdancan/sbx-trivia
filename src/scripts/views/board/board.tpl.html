@@ -1,23 +1,41 @@
 <div class="board" ng-class="{active: game.started}">
-		<div class="view leaderboard">
-			<div class="game-list">
-				<div countdown-chart="game.startTime" base="game.currentTime">
-					<span class="text" ng-if="!game.startTime">Waiting for Players</span>
-					<span class="text" ng-if="game.startTime">Starts in <span countdown="game.startTime" base="game.currentTime"></span></span>
-				</div>
+		<div class="view overview">
+			<div class="board-header">
+				<ul class="board-instructions">
+					<li>
+						<img src="/images/board/mobile.png" height="124">
+						<div>Go to<br /><u>ten.springbox.com</u></div>
+					</li>
+					<li>
+						<img src="/images/board/camera.png" height="124">
+						<div>Enter your name<br /> and take a quick selfie.</div>
+					</li>
+					<li>
+						<img src="/images/board/clock.png" height="124">
+						<div>Wait for the <br />game to start.</div>
+					</li>
+				</ul>
 			</div>
 			<div class="user-list">
 				<ul>
-				<li ng-repeat="user in visibleUsers" class="user" ng-class="getGridPos($index)">
-					<div class="user-image">
-						<div ng-if="user.avatar" ng-style="{'background-image':'url('+user.avatar+')'}"></div>
-					</div>
-				</li>
-
+					<li ng-repeat="user in displayedUsers" class="user" ng-class="getAvatarClass($index)">
+						<div class="user-avatar" ng-style="{'background-image':'url('+user.avatar+')'}"></div>
+						<div class="user-name">{{user.username}}</div>
+					</li>
+				</ul>
+			</div>
+			<div class="board-footer">
+				<leaderboard users="users"></leaderboard>
+				<div class="board-logo"><img src="images/board/logo.png" /></div>
+				<div class="game-countdown">
+					<span class="message" ng-show="!game.startTime">Waiting for Players</span>
+					<span class="message" ng-show="game.startTime">Next Game Starts In<br><span countdown="game.startTime" base="game.currentTime"></span></span>
+				</div>
 			</div>
 		</div>
 		<div class="view current-game">
-			Status
+			{{question.correctAnswer}}
+			<div question="question" correct-answer="correctAnswer"></div>
 		</div>
 	</div>
 </div>

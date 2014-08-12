@@ -1,0 +1,10 @@
+<div class="leaderboard">
+	<div class="heading">Top Dawgs</div>
+	<ul>
+		<li ng-repeat="user in users | orderBy:'score':true">
+			<span class="rank">#{{$index+1}}</span>
+			<span class="username">{{user.username}}</span>
+			<span class="score">{{user.score}}</span>
+		</li>
+	</ul>
+</div>

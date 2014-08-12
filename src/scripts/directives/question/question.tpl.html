@@ -1,0 +1,10 @@
+<div class="question" ng-show="question" ng-class="{'has-image':question.image}">
+	<div class="question-number">Question #{{question.id + 1}}</div>
+	<div class="question-text">{{question.text}}</div>
+	<div class="question-image" ng-if="question.image">
+		<img ng-src="{{question.image}}">
+	</div>
+	<ul class="options">
+		<li ng-repeat="option in question.options" class="option-item"><a href ng-click="selectAnswer($index)" class="option-link" ng-class="{'selected':$index===selectedAnswer, 'correct': correctAnswer>=0 && correctAnswer===$index, 'incorrect': correctAnswer!==false && correctAnswer!==$index }"><span class="option-text">{{option.text}}</span></a></li>
+	</ul>
+</div>

@@ -205,6 +205,17 @@ var broadcastGamesList = function (socket) {
 	
 }
 
+var broadcastCurrentGameQuestion = function (socket) {
+
+	var activeGame = games
+		.filter(function(obj){ return obj.data.completed == false && obj.data.started == true; });
+
+	if(activeGame[0]){
+		activeGame[0].updateBoard(socket);
+	}
+
+}
+
 
 //SOCKETS!!!
 io.on('connection', function(socket){
@@ -212,7 +223,8 @@ io.on('connection', function(socket){
 	socket.on('board:register', function(){
 		socket.join('board');
 		broadcastUsers();
-		broadcastGamesList(socket)
+		broadcastGamesList(socket);
+		broadcastCurrentGameQuestion(socket);
 	});
 
 	socket.on('user:register', function(){
@@ -236,7 +248,7 @@ io.on('connection', function(socket){
 
 createGame();
 
-for (var i = 0; i < 100; i++) {
+for (var i = 0; i < 25; i++) {
 	var user = new User('user-' + i);
 	user.avatar = 'http://lorempixel.com/200/200/?id='+users.length;
 	users.push(user);

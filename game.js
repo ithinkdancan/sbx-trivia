@@ -28,11 +28,13 @@ var game = function (config) {
 	//User Answers for each question
 	this.answers = [];
 
-	this.gameDelay = 10000;
+	this.gameDelay = 2000;
 
-	this.gameOverDelay = 5000;
+	this.gameResultDelay = 5000;
 
-	this.gameStartDelay = 30000;
+	this.gameOverDelay = 0;
+
+	this.gameStartDelay = 1000*60*10;
 
 	this.requiredPlayers = 1;
 
@@ -56,6 +58,10 @@ game.prototype.update = function () {
 	this.data.currentTime = Date.now();
 	this.io.to(this.gameRoom).emit('game:update', this.data);
 };
+
+game.prototype.updateBoard = function (socket) {
+	this.broadcastQuestion(this.currentQuestion, socket);
+}
 
 game.prototype.start = function () {
 
@@ -182,10 +188,13 @@ game.prototype.broadcastResult = function (index){
 
 	this.questionActive = false;
 
-	this.io.to(this.gameRoom).emit('game:result', {
+	var result = {
 		id: index,
 		correctAnswer: question.correct
-	});
+	};
+
+	this.io.to(this.gameRoom).emit('game:result', result);
+	this.io.to('board').emit('game:result', result);
 
 	//Update Scores
 	this.calculateScores();
@@ -195,7 +204,7 @@ game.prototype.broadcastResult = function (index){
 	}
 
 	// Show the Next Question
-	setTimeout(this.next.bind(this), this.gameDelay);
+	setTimeout(this.next.bind(this), this.gameResultDelay);
 
 };
 
@@ -215,8 +224,6 @@ game.prototype.broadcastQuestion = function (index, socket){
 			options: question.options,
 			results: []
 		}
-
-		console.log('sending Question', data.text)
 		
 		if(socket){
 			socket.emit('game:question', data);

@@ -15,7 +15,7 @@ module.exports = {
         files: ['<%= paths.src %>/scripts/**/*.tpl.html'],
         tasks: ['html2js', 'concat:app', 'uglify'],
         options: {
-          livereload: false
+          livereload: true
         }
     },
 

@@ -1,5 +1,8 @@
+var shortId = require('shortid');
+
 var user = function (username) {
-	console.log('New User', username);
+
+	this.cid = shortId.generate();
 	this.username = username;
 	this.avatar = false;
 	this.score = 0;

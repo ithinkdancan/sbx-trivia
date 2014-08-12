@@ -24,6 +24,8 @@
     "ios-imagefile-megapixel": "*",
     "exif-js": "https://github.com/jseidelin/exif-js.git",
     "angular-animate": "~1.2.19",
-    "d3": "~3.4.11"
+    "d3": "~3.4.11",
+    "leapjs": "~0.6.2",
+    "leapjs-plugins": "~0.1.6"
   }
 }
