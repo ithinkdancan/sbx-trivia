@@ -56,7 +56,7 @@ angular.module('sbx.trivia.controller.board', [
 		socket.on('users:list', function(data){
 			$scope.users = data;
 
-			if(!$scope.game.users.length){
+			if(!$scope.game || !$scope.game.users.length){
 				$scope.displayedUsers = $scope.users;
 			}
 		});
@@ -75,6 +75,7 @@ angular.module('sbx.trivia.controller.board', [
 		})
 
 		$scope.$watch('game.users',function(users){
+			if(!users){ return; }
 			if(users.length){
 				$scope.displayedUsers = $scope.users.filter(function(user){
 					return users.indexOf(user.username) >= 0;

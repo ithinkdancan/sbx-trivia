@@ -28,9 +28,9 @@ var game = function (config) {
 	//User Answers for each question
 	this.answers = [];
 
-	this.gameDelay = 100000;
+	this.gameDelay = 5000;
 
-	this.gameResultDelay = 5000*0;
+	this.gameResultDelay = 5000*1;
 
 	this.gameOverDelay = 0;
 

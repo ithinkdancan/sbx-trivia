@@ -1,20 +1,17 @@
-<div class="game enter-slide-up">
+<div class="game enter-slide-up" ng-class="{correct:correctAnswer === selectedAnswer, incorrect: correctAnswer !== selectedAnswer}">
 	<div class="card">
 		<div class="instructions" ng-if="!game.started">
 			<span ng-show="!game.startTime">Waiting for More Players</span>
 			<span ng-show="game.startTime">Game Starts In<br><span countdown="game.startTime" base="game.currentTime"></span></span>
 		</div>
 		<div question="question" correct-answer="correctAnswer" selected-answer="selectedAnswer" select-answer="selectAnswer(selectedAnswer)"></div>
-
-		<!-- <div class="questions" ng-show="question">
-			<div class="question-text instructions">{{question.text}}</div>
-			<div class="question-image" ng-if="question.image"><img ng-src="{{question.image}}"></div>
-			<ul class="options">
-				<li ng-repeat="option in question.options" class="option-item"><a href ng-click="selectAnswer($index)" class="option-link" ng-class="{'selected':$index===selectedAnswer, 'correct': correctAnswer>=0 && correctAnswer===$index, 'incorrect': correctAnswer!==false && correctAnswer!==$index }"><span class="option-text">{{option.text}}</span></a></li>
-			</ul>
-		</div> -->
 	</div>
 	<div class="result" ng-show="game.started && correctAnswer!==false">
-		{{correctAnswer}}
+		<div ng-show="correctAnswer === selectedAnswer" class="result-content">
+			<img ng-src="/images/game/correct.png" class="icon" alt="">
+		</div>
+		<div ng-hide="correctAnswer === selectedAnswer" class="result-content">
+			<img ng-src="/images/game/incorrect.png" class="icon" alt="">
+		</div>
 	</div>
 </div>
