@@ -82,6 +82,7 @@ game.prototype.next = function () {
 	if(questions[this.currentQuestion]){
 
 		this.questionActive = true;
+		this.questionEndTime = Date.now() + this.gameDelay;
 		this.broadcastQuestion(this.currentQuestion);
 
 		setTimeout(this.broadcastResult.bind(this,this.currentQuestion) ,this.gameDelay);
@@ -107,12 +108,23 @@ game.prototype.end = function () {
 
 }
 
-game.prototype.addUser = function(username, socket){
+game.prototype.findUser = function (cid) {
+
+	var match = this.data.users.filter(function(user){ 
+		return user.cid == cid;
+	});
+
+	return match ? match[0] : false;
+
+};
+
+game.prototype.addUser = function(user, socket){
+
 	
-	if(this.data.users.indexOf(username) < 0){
-		console.log(username + ' has joined the game');
+	if(!this.findUser(user.cid)){
+		console.log(user.username + ' has joined the game');
 		
-		this.data.users.push(username);
+		this.data.users.push(user);
 		
 		//start the game in in 30 seconds or so
 		if(!this.data.started && this.data.users.length == this.requiredPlayers){
@@ -132,11 +144,12 @@ game.prototype.addUser = function(username, socket){
 	
 }
 
-game.prototype.removeUser = function(username, socket){
-	var userIndex = this.data.users.indexOf(username);
+game.prototype.removeUser = function(user, socket){
+	
+	var userIndex = this.data.users.indexOf(user);
 	
 	if(userIndex >= 0){
-		console.log(username + ' has left the game');
+		console.log(user.username + ' has left the game');
 		
 		this.data.users.splice(userIndex,1);
 		socket.leave(this.gameRoom);
@@ -157,16 +170,18 @@ game.prototype.calculateScores = function () {
 
 	
 	for (var i = 0; i <= this.currentQuestion; i++) {
-		for(username in this.answers[i]){
-			if(this.answers[i][username] == questions[i].correct){
-				if(this.data.scores[username]){
-					this.data.scores[username]++;
+		for(cid in this.answers[i]){
+			if(this.answers[i][cid] == questions[i].correct){
+				if(this.data.scores[cid]){
+					this.data.scores[cid]++;
 				} else {
-					this.data.scores[username] = 1;
+					this.data.scores[cid] = 1;
 				}
 			} 
 		}
 	};
+
+	console.log(this.data.scores);
 };
 
 game.prototype.broadcastEnd = function () {
@@ -222,6 +237,8 @@ game.prototype.broadcastQuestion = function (index, socket){
 			text : question.text,
 			image : question.image || false,
 			options: question.options,
+			endTime: this.questionEndTime,
+			currentTime: Date.now(),
 			results: []
 		}
 		
@@ -240,7 +257,7 @@ game.prototype.broadcastQuestion = function (index, socket){
 game.prototype.userAnswer = function (data) {
 
 	if(data.questionId == this.currentQuestion && this.questionActive){
-		this.answers[this.currentQuestion][data.username] = data.answer;
+		this.answers[this.currentQuestion][data.cid] = data.answer;
 	}
 
 }

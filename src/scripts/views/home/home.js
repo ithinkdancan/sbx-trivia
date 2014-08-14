@@ -6,7 +6,7 @@
 angular.module('sbx.trivia.controller.home', [
 	'sbx.trivia.directive.countdown', 
 	'sbx.trivia.service.socket',
-	'sbx.trivia.directive.springbox'
+	'sbx.trivia.directive.countdown-chart'
 ])
 
 .controller('homeController', 
@@ -17,7 +17,10 @@ angular.module('sbx.trivia.controller.home', [
 
 	 var updateGames = function (games) {
 	 	console.log('games update', games)
-	 	$scope.games = games;
+	 	if(games.length){
+	 		$scope.game = games[0];
+	 	}
+	 	
 	 }
 
 	 $scope.logout = function (){

@@ -45,6 +45,7 @@ angular.module('sbx.trivia.controller.game', [
 	var showResult = function (data) {
 		console.log('show result:', data);
 		$scope.correctAnswer = data.correctAnswer;
+		$scope.answerClass = $scope.correctAnswer === $scope.selectedAnswer ? 'correct' : 'incorrect';
 	}
 
 	//user has selected an answer
@@ -58,6 +59,7 @@ angular.module('sbx.trivia.controller.game', [
 
 		socket.emit('question:answer', {
 			username: user.username, 
+			cid: user.cid, 
 			id: gameId,
 			questionId: $scope.question.id,
 			answer: $scope.selectedAnswer
@@ -71,14 +73,14 @@ angular.module('sbx.trivia.controller.game', [
 	}, function(data){
 	 	if(data.username){
 	 		user = data;
-	 		socket.emit('game:join', {username: user.username, id: gameId});
+	 		socket.emit('game:join', {cid: user.cid, id: gameId});
 	 	}
 	});
 
 	//leave the game if the route changes
 	$scope.$on('$locationChangeStart', function(){
 	 	if(gameId){
-	 		socket.emit('game:leave', {username: user.username, id: gameId});
+	 		socket.emit('game:leave', {cid: user.cid, id: gameId});
 	 	}
 	});
 

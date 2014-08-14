@@ -9,6 +9,7 @@ module.exports = {
                 '<%= paths.src %>/bower_components/angular-socket-io/socket.min.js',
                 '<%= paths.src %>/bower_components/ios-imagefile-megapixel/src/megapix-image.js',
                 '<%= paths.src %>/bower_components/exif-js/exif.js',
+                '<%= paths.src %>/bower_components/d3/d3.js',
                 '<%= paths.src %>/bower_components/leapjs/leap-0.6.2.js'
             ]
         }

@@ -1,9 +1,12 @@
 <div class="photo  enter-slide-up leave-slide-down">
-	<div class="instructions">Upload a Photo</div>
-	<div ng-class="{'no-avatar':!user.avatar}">
-		<photo-upload>
-				<div ng-if="user.avatar" class="user-image"  ng-style="{'background-image':'url('+user.avatar+')'}"></div>
-		</photo-upload>
+
+	<div class="file-container">
+		<div ng-class="{'no-avatar':!user.avatar}">
+			<photo-upload>
+					<div ng-if="user.avatar" class="user-image"  ng-style="{'background-image':'url('+user.avatar+')'}"></div>
+			</photo-upload>
+			<div class="label">Upload a Photo</div>
+		</div>
 	</div>
-	<div class="button-container"><a href="#/" class="button">{{user.avatar ? "Next" : "Skip"}}</a></div>
+	<div class="button-container"><hr><a href="#/" class="button">{{user.avatar ? "Next" : "Skip"}}</a></div>
 </div>

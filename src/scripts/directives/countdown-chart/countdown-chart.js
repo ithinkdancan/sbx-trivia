@@ -13,19 +13,26 @@ angular.module('sbx.trivia.directive.countdown-chart', [])
 			base: '='
 		},
 		transclude: true,
+		replace: true,
 		controller: 'countdownChartController',
 		templateUrl: 'directives/countdown-chart/countdown-chart.tpl.html',
 		link: function($scope, element, attributes){
 			console.log('LINKING!');
 
-			var diameter = 380;
+
+			var diameter = Math.min(d3.select(element[0]).node().offsetWidth,290);
 			var radius = diameter/2;
 			var twoPi = 2 * Math.PI;
 
 			var arc = d3.svg.arc()
 			    .startAngle(0)
-			    .innerRadius(radius - 30)
+			    .innerRadius(radius - 2)
 			    .outerRadius(radius);
+
+			var arc2 = d3.svg.arc()
+			    .startAngle(0)
+			    .innerRadius(0)
+			    .outerRadius(radius - 5);
 
 			var arcTween = function (transition, newAngle) {
 
@@ -52,7 +59,7 @@ angular.module('sbx.trivia.directive.countdown-chart', [])
 			var container = svg.append("g")
 		    	.attr("transform", "translate("+ diameter/2+","+diameter/2+")");
 
-		     var meter = container.append("g")
+		    var meter = container.append("g")
     			.attr("class", "progress-meter");
 
 
@@ -60,6 +67,16 @@ angular.module('sbx.trivia.directive.countdown-chart', [])
 	    		console.log('timeRemaining', timeRemaining);
 
 	    		meter.selectAll('*').remove();
+
+	    		var background = meter.append("path")
+					.attr("class", "foreground-bg")
+					.datum({endAngle: 360})
+					.attr("d", arc)
+
+				var inner = meter.append("path")
+					.attr("class", "background")
+					.datum({endAngle: 360})
+					.attr("d", arc2)
 
 	    		if(!timeRemaining){ return; }
 
@@ -70,6 +87,8 @@ angular.module('sbx.trivia.directive.countdown-chart', [])
     				.duration(timeRemaining)
     				.ease("linear")
     				.call(arcTween, twoPi);
+
+    			
 			
 			}
 

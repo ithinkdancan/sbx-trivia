@@ -1,9 +1,14 @@
 <div class="login home">	
-	<form class="login-form" ng-submit="createTeam()">
-		<div><img src="images/logo.png" class="logo"></div>
-    	<div>
-    		<input class="username" type="text" ng-model="username" placeholder="Your Name" />
+	<form ng-submit="createTeam()">
+		<div class="login-form">
+			<div><img src="images/logo.png" class="logo"></div>
+	    	<div>
+	    		<input class="username" type="text" ng-model="username" placeholder="Your Name" />
+	    	</div>
+	    </div>
+    	<div class="button-container">
+    		<hr>
+    		<input class="button" type="submit" value="Join" />
     	</div>
-    	<input class="button" type="submit" value="Join" />
 	</form>
 </div>

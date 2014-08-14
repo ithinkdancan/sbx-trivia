@@ -1,0 +1,76 @@
+.home {
+	
+	padding-top: 50px;
+	
+	.game-container {
+		position: absolute;
+		bottom: 15px;
+		width: 90%;
+		margin-left: 5%;
+	}
+
+	.game-status {
+		width: 90%;
+		position: absolute;
+		text-align: center;
+		top: 45%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		font-size: 27px;
+		color: #FFF;
+		padding: 0 30px;
+		line-height: 135%;
+	}
+
+	.game-name {
+		position: relative;
+		z-index: 2;
+		font-weight: 300;
+	}
+
+	.count {
+		position: absolute;
+		font-size: 16px;
+		width: 100%;
+		z-index: 2;
+		font-weight: 100;
+		line-height: 130%;
+		margin-top: 15px;
+		top: 100%;
+		left: 0;
+	}
+
+	.countdown {
+		// position: absolute;
+		font-family: $monoFont;
+		// font-weight: 200;
+		// width: 100%;
+		// left: 0;
+		// top: -20px;
+		font-size: 22px;
+		// transform: translateY(-100%);
+		// z-index: 2;
+	}
+	
+	.countdown-chart {
+		position: absolute;
+		width: 90%;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		z-index: 1;
+	}
+
+	.foreground {
+		fill: RGBA(237, 91, 34, .9);
+	}
+
+	.background {
+		fill: RGBA(255,255,255, .1);
+	}
+
+	.foreground-bg {
+		fill: rgba(#FFF,.2);
+	}
+
+}

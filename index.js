@@ -70,16 +70,14 @@ router.route('/users/:username')
 	.post(function(req, res){
 
 		var username = req.params.username;
-		var matchingUser = users.filter(function(obj){ 
-				return obj.username == username 
-			})[0];
+		var matchingUser = findUser(username);
 
 			matchingUser.avatar = req.body.avatar;
 
 			var base64Data = matchingUser.avatar.replace(/^data:image\/png;base64,/, "");
 			mkdirp('dist/uploads', function (err) {
-				fs.writeFile('dist/uploads/' + matchingUser.username + ".png", base64Data, 'base64', function(err) {
-					 matchingUser.avatar =  encodeURI('/uploads/' + matchingUser.username + ".png");
+				fs.writeFile('dist/uploads/' + matchingUser.cid + ".png", base64Data, 'base64', function(err) {
+					 matchingUser.avatar =  encodeURI('/uploads/' + matchingUser.cid + ".png");
 
 					 res.json({ success: true, user: matchingUser });
 
@@ -103,10 +101,10 @@ var updateUserScores = function(){
 	//Tally up the scores!
 	games.forEach(function(game){
 		var gameScores = game.data.scores;
-		for(username in gameScores){
-			var user = findUser(username);
+		for(cid in gameScores){
+			var user = findUserById(cid);
 			if(user){
-				user.score += gameScores[username];
+				user.score += gameScores[user.cid];
 			}
 		}
 	});
@@ -138,6 +136,16 @@ var findUser = function (username) {
 
 };
 
+var findUserById = function (cid) {
+
+	var match = users.filter(function(user){ 
+		return user.cid == cid;
+	});
+
+	return match ? match[0] : false;
+
+};
+
 var findGame = function (id) {
 
 	var match = games.filter(function(obj){ 
@@ -151,9 +159,10 @@ var findGame = function (id) {
 var joinGame = function (data, socket) {
 
 	var game = findGame(data.id);
+	var user = findUserById(data.cid);
 
 	if(game){
-		game.addUser(data.username, socket);
+		game.addUser(user, socket);
 		broadcastGamesList();
 	} else {
 		console.log('didnt find that game');
@@ -164,9 +173,10 @@ var joinGame = function (data, socket) {
 var leaveGame = function (data, socket) {
 
 	var game = findGame(data.id);
+	var user = findUserById(data.cid);
 
 	if(game){
-		game.removeUser(data.username, socket);
+		game.removeUser(user, socket);
 		broadcastGamesList();
 	} else {
 		console.log('didnt find that game');

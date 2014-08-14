@@ -6,18 +6,29 @@
 	width: 100%;
 	height: 100%;
 	background: $defaultColor;
+	background: url(/images/backgrounds/cheers.jpg) right center no-repeat;
+	background-size: cover;
 	z-index: 1001;
+
+	.file-container {
+		width: 270px;
+		height: 270px;
+		border: 2px solid rgba(#FFF,.2);
+		position: absolute;
+		top: 33%;
+		left: 50%;
+		transform: translate(-50%,-50%);
+		border-radius: 50%;
+	}
 
 	.file-uploader{
 		display: block;
-		width: 200px;
-		height: 200px;
-		background: #FFF url(../images/male18.png) no-repeat;
-		background-size:contain;
-		border-radius: 50%;
-		border: 1px solid #DDD;
-		margin: 20px auto;
 		position: relative;
+		width: 260px;
+		height: 260px;
+		background: rgba(#FFF, .2);
+		border-radius: 50%;
+		margin: 3px auto;
 		overflow: hidden;
 
 		a {
@@ -27,7 +38,22 @@
 		}
 	}
 
+	.no-avatar .file-uploader{
+		background: rgba(#FFF, .2) url(../images/male18-white.png) no-repeat;
+		background-size:contain;
+	}
+
+	.label {
+		text-align: center;
+		color: #FFF;
+		font-size: 22px;
+		margin-top: 30px;
+	}
+
 	.button-container {
+		position: absolute;
+		bottom: 15px;
+		left: 5%;
 		width: 90%;
 		margin: 0 auto;
 	}

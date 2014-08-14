@@ -1,26 +1,30 @@
 <div class="home">
 	<sbx-header></sbx-header>
-	<div class="instructions">
-	    <span ng-if="!games">Loading...</span>
-	    <span ng-if="games.length">Join The Game</span>
-	    <!-- <span ng-if="!games.started">No Games Available</span> -->
+	<div class="instructions" ng-if="!game">
+	    <span>Loading...</span>
 	</div>
-	<div class="list">
-	    <ul class="list-container">
 
-	   	 <!-- Existing Game -->
-	      <li class="list-item" ng-repeat="game in games">
-	      	<a ng-href="#/game/{{game.id}}" ng-if="!game.started" class="list-link">
-	      		<div class="count">{{game.users.length}} <span class="players"><ng-pluralize count="game.users.length" when="{'one':'player', 'other':'players'}"></ng-pluralize></span></div>
-	      		<div class="name">Springbox Trivia</div>
-	      		<div class="status" ng-show="!game.startTime">Waiting for Players...</div>
-	      		<div class="status" ng-show="game.startTime">Games Starts in <span countdown="game.startTime"></span></div>
-	      		
-	      	</a>
-	      	<span ng-if="game.started" class="list-link">
-	      		<div class="name">Game in Progress</div>
-	      	</span>
-	      </li>
+	<div class="game-status">
+		
+
+		<div class="game-name">
+			Springbox Trivia
+
+			<div class="count" ng-if="game.startTime">Game Starts in <div countdown="game.startTime" base="game.currentTime"></div></div>
+			<div class="count" ng-if="!game.startTime">Waiting for Players...</div>
+		</div>
+		<div countdown-chart="game.startTime" base="game.currentTime"></div>
 	</div>
-	<div><a href ng-click="logout()">Logout</a></div>
+
+	<div class="game-container">
+		<hr>
+		<a ng-href="#/game/{{game.id}}" ng-if="!game.started" class="button">
+			Let's Play
+		</a>
+		<span ng-href="#/game/{{game.id}}" ng-if="game.started" class="button disabled">
+			Game in Progress
+		</span>
+	</div>
+	<div class="logout"><a href ng-click="logout()">Logout</a></div>
+	<!-- {{game.users.length}} <span class="players"><ng-pluralize count="game.users.length" when="{'one':'player', 'other':'players'}"></ng-pluralize></span> -->
 </div>
