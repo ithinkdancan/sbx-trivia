@@ -15,9 +15,9 @@ angular.module('sbx.trivia.controller.board', [
 	function ($scope,   socket,   $interval){
 
 		var baseIndex = 0;
-		var displayedUsersThreshold = 10;
+		var displayedUsersThreshold = 5;
 
-		$scope.activeIndex = 5;
+		$scope.activeIndex = 8;
 		$scope.users = [];
 
 
@@ -28,24 +28,44 @@ angular.module('sbx.trivia.controller.board', [
 			//active class
 			if($index == $scope.activeIndex){
 				classes.push('active current');
+			
 			//future class	
 			} else if ($index > $scope.activeIndex) {
-				classes.push('future');
 
+				// console.log($scope.activeIndex, displayedUsersThreshold);
+				
+				
 				//future visible
-				if($index < $scope.activeIndex+displayedUsersThreshold){
-					classes.push('active future-' + ($index - $scope.activeIndex));
+				if($index <= $scope.activeIndex+displayedUsersThreshold){
+					classes.push('active future future-' + ($index - $scope.activeIndex));
+
+				//loop back	
+				} else if($scope.activeIndex <= displayedUsersThreshold && $index >= $scope.displayedUsers.length - (displayedUsersThreshold-$scope.activeIndex)){
+					classes.push('active past past-' + ($scope.displayedUsers.length + $scope.activeIndex - $index) );
+
+				//future invisible
+				} else {
+					classes.push('future');
 				}
 
 			//Past class
 			} else if ($index < $scope.activeIndex) {
-				classes.push('past');
+
 
 				//past visible
-				if($index > $scope.activeIndex-displayedUsersThreshold){
-					classes.push('active past-' + ($scope.activeIndex - $index));
+				if($index >= $scope.activeIndex-displayedUsersThreshold){
+					classes.push('active past past-' + ($scope.activeIndex - $index));
+				} else if($scope.activeIndex >= $scope.displayedUsers.length - displayedUsersThreshold &&
+						$index <= displayedUsersThreshold - ($scope.displayedUsers.length - $scope.activeIndex)
+					) {
+					classes.push('active future-' + (($index) + ($scope.displayedUsers.length-$scope.activeIndex) ));
+				} else {
+					classes.push('past');
 				}
 			}
+
+			//0 1 2 3
+			//2 3 4 5
 
 			return classes.join(' ');
 
@@ -76,10 +96,9 @@ angular.module('sbx.trivia.controller.board', [
 
 		$scope.$watch('game.users',function(users){
 			if(!users){ return; }
+
 			if(users.length){
-				$scope.displayedUsers = $scope.users.filter(function(user){
-					return users.indexOf(user.username) >= 0;
-				})
+				$scope.displayedUsers = users;
 				$scope.activeIndex = $scope.displayedUsers.length-1;
 			} else {
 				$scope.displayedUsers = $scope.users;
@@ -92,10 +111,15 @@ angular.module('sbx.trivia.controller.board', [
 
 				var t = frame.hands[0].palmPosition;
 				var xPercent = Math.min(Math.max(t[0],-300),300)/300;
+				var index = Math.floor(baseIndex + xPercent*10);
 
+				//check for loop around
+				index = index < 0 ? $scope.users.length + (index) : index;
+				index = index >= $scope.users.length ? index%$scope.users.length : index;
 
+				//aply new index
 				$scope.$apply(function(){
-					$scope.activeIndex = Math.min(Math.max(Math.floor(baseIndex + xPercent*10),0),$scope.users.length) ;
+					$scope.activeIndex = index;
 				})
 
 			} else {

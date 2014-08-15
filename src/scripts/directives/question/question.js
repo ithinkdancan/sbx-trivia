@@ -20,8 +20,4 @@ angular.module('sbx.trivia.directive.question', [])
 }])
 .controller('questionController', ['$scope', function($scope) {
 	
-	$scope.$watch('question', function(data){
-		console.log('question changed!', data);
-	})
-
 }])

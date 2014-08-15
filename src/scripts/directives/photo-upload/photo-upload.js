@@ -26,7 +26,7 @@ angular.module('sbx.trivia.directive.photo-upload', [
                     var orientation = EXIF.getTag(this, "Orientation") || 0;
 
                     var mpImg = new MegaPixImage(img);
-	  				mpImg.render(mpCanvas, { maxWidth: 200, maxHeight: 200, orientation: orientation });
+	  				mpImg.render(mpCanvas, { maxWidth: 250, maxHeight: 250, orientation: orientation });
 
 	  				authenticationService.uploadPhoto(mpCanvas.toDataURL());
 

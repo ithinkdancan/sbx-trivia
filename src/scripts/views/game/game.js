@@ -71,7 +71,7 @@ angular.module('sbx.trivia.controller.game', [
 	$scope.$watch(function(){ 
 		return authenticationService.getCurrentUser(); 
 	}, function(data){
-	 	if(data.username){
+	 	if(data.cid){
 	 		user = data;
 	 		socket.emit('game:join', {cid: user.cid, id: gameId});
 	 	}

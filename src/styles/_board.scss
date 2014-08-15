@@ -109,11 +109,22 @@
 		height: 300px;
 		top: 48%;
 		left: 50%;
-		transition: all .2s;
+		transition: all .25s ease;
 		transform-origin: 50% 50%;
-		transform: translate3d(-50%,-50%,0);
+		transform: translate3d(-50%,-50%,0) scale3d(.5,.5,1);
 		display: none;
 		text-align: center;
+
+		.user-avatar {
+			width: 300px;
+			height: 300px;
+			margin: 0 auto;
+			border-radius: 150px;
+			overflow: hidden;
+			background-size: cover;
+			transition: border-color .25s ease;
+			border: 3px solid #323232;
+		}
 
 
 		&.active {
@@ -122,11 +133,10 @@
 
 		&.current {
 
-			.user-avatar {
-				transform: translate3d(0,0,0);
-				width: 300px;
-				height: 300px;
-				border: 3px solid #2cb9a7;
+			transform: translate3d(-50%,-50%,0) scale3d(1,1,1);
+
+			.user-avatar {	
+				border-color: #2cb9a7;
 			}
 
 			.user-name {
@@ -135,12 +145,26 @@
 		}
 
 		@for $i from 1 to 10 {
-  			&.future-#{$i}{
-				transform: translate3d(-25% + (50*$i),-50%,0);
-  			}
-  			&.past-#{$i}{
-				transform: translate3d(-75% + (-50*$i),-50%,0);
-  			}
+			
+			@if $i < 2 {
+				&.future-#{$i}{
+					transform: translate3d(-21% + (50*$i),-50%,0) scale3d(.7,.7,1);
+	  			}
+	  			&.past-#{$i}{
+					transform: translate3d(-79% + (-50*$i),-50%,0) scale3d(.7,.7,1);
+	  			}
+			} @else {
+
+				&.future-#{$i}{
+					transform: translate3d(-15% + (50*$i),-50%,0) scale3d(.5,.5,1);
+	  			}
+	  			&.past-#{$i}{
+					transform: translate3d(-85% + (-50*$i),-50%,0) scale3d(.5,.5,1);
+	  			}
+
+			}
+
+  			
 		}
 
 		// &.ng-leave {
@@ -157,17 +181,7 @@
 
 
 
-	.user-avatar {
-		width: 150px;
-		height: 150px;
-		margin: 0 auto;
-		border-radius: 150px;
-		overflow: hidden;
-		background-size: cover;
-		transition: all .2s;
-		border: 3px solid #323232;
-		transform: translate3d(0,90px,0);
-	}
+	
 
 
 	.user-name {

@@ -17,14 +17,15 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.2.19",
+    "angular": "~1.2.22",
     "angular-socket-io": "~0.6.0",
-    "angular-route": "~1.2.19",
-    "angular-resource": "~1.2.19",
+    "angular-route": "~1.2.22",
+    "angular-resource": "~1.2.22",
+    "angular-touch": "~1.2.22",
+    "angular-animate": "~1.2.22",
+    "d3": "~3.4.11",
     "ios-imagefile-megapixel": "*",
     "exif-js": "https://github.com/jseidelin/exif-js.git",
-    "angular-animate": "~1.2.19",
-    "d3": "~3.4.11",
     "leapjs": "~0.6.2",
     "leapjs-plugins": "~0.1.6"
   }

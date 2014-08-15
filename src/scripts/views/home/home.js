@@ -30,5 +30,10 @@ angular.module('sbx.trivia.controller.home', [
 	 socket.emit('user:register');
 
 	 socket.on('games:list', updateGames)
+
+	 //listener Cleanup
+	 $scope.$on('$destroy', function(){
+	 	socket.removeListener('games:list')
+	 });
 	
 }])

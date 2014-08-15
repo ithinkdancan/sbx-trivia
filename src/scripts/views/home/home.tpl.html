@@ -10,7 +10,7 @@
 		<div class="game-name">
 			Springbox Trivia
 
-			<div class="count" ng-if="game.startTime">Game Starts in <div countdown="game.startTime" base="game.currentTime"></div></div>
+			<div class="count" ng-if="game.startTime && !game.started">Game Starts in <div countdown="game.startTime" base="game.currentTime"></div></div>
 			<div class="count" ng-if="!game.startTime">Waiting for Players...</div>
 		</div>
 		<div countdown-chart="game.startTime" base="game.currentTime"></div>

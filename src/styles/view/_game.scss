@@ -31,7 +31,10 @@
 
 	.question-image {
 		img {
-				max-width: 100%;
+				display: block;
+				max-width: 90%;
+				margin: 10px auto;
+
 			}
 	}
 
@@ -80,7 +83,6 @@
 		padding: 15px;
 		position: relative;
 		overflow: hidden;
-		transition: all .2s;
 		text-align: left;
 
 		&.selected {
