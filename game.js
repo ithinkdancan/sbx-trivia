@@ -1,4 +1,5 @@
-var questions = require('./questions.json');
+var questions = require('./questions2.json');
+var  _ = require('lodash');
 
 var game = function (config) {
 
@@ -6,6 +7,10 @@ var game = function (config) {
 
 	//Socket Interface
 	this.io = config.io;
+
+	this.questions = _.sample(questions, 15);
+
+	this.questions = questions.filter(function(question){ return question.image; });
 
 	//Event Callbacks
 	this.onGameStart = config.onStart || false;
@@ -28,13 +33,13 @@ var game = function (config) {
 	//User Answers for each question
 	this.answers = [];
 
-	this.gameDelay = 5000;
+	this.gameDelay = 20000;
 
-	this.gameResultDelay = 5000*1;
+	this.gameResultDelay = 1000*1;
 
 	this.gameOverDelay = 0;
 
-	this.gameStartDelay = 1000*60*1;
+	this.gameStartDelay = 1000*60*0;
 
 	this.requiredPlayers = 1;
 
@@ -79,7 +84,7 @@ game.prototype.next = function () {
 
 	this.currentQuestion++;
 
-	if(questions[this.currentQuestion]){
+	if(this.questions[this.currentQuestion]){
 
 		this.questionActive = true;
 		this.questionEndTime = Date.now() + this.gameDelay;
@@ -171,7 +176,7 @@ game.prototype.calculateScores = function () {
 	
 	for (var i = 0; i <= this.currentQuestion; i++) {
 		for(cid in this.answers[i]){
-			if(this.answers[i][cid] == questions[i].correct){
+			if(this.answers[i][cid] == this.questions[i].correct){
 				if(this.data.scores[cid]){
 					this.data.scores[cid]++;
 				} else {
@@ -199,7 +204,7 @@ game.prototype.broadcastEnd = function () {
 
 game.prototype.broadcastResult = function (index){
 
-	var question = questions[index];
+	var question = this.questions[index];
 
 	this.questionActive = false;
 
@@ -226,7 +231,7 @@ game.prototype.broadcastResult = function (index){
 game.prototype.broadcastQuestion = function (index, socket){
 	
 	if(this.questionActive){
-		var question = questions[index];
+		var question = this.questions[index];
 
 		if(!this.answers[index]){
 			this.answers[index] = {};
