@@ -11,8 +11,8 @@ var mkdirp = require('mkdirp');
 var User = require('./user.js');
 var Game = require('./game.js');
 
-var users = [];
-var games = [];
+var users = require('./data/users.json');
+var games = require('./data/games.json');
 
 //create the server
 http.listen(8080);
@@ -82,6 +82,7 @@ router.route('/users/:username')
 					 res.json({ success: true, user: matchingUser });
 
 					 broadcastUsers();
+
 				});
 			});
 
@@ -198,6 +199,7 @@ var answerQuestion = function(data, socket) {
 
 var broadcastUsers = function () {
 	io.to('board').emit('users:list', users);
+	saveUsers();
 }
 
 var broadcastGamesList = function (socket) {
@@ -224,6 +226,10 @@ var broadcastCurrentGameQuestion = function (socket) {
 		activeGame[0].updateBoard(socket);
 	}
 
+}
+
+var saveUsers = function () {
+	fs.writeFile('dist/users.json', JSON.stringify(users),  function (err) {});
 }
 
 
@@ -258,9 +264,9 @@ io.on('connection', function(socket){
 
 createGame();
 
-for (var i = 0; i < 12; i++) {
-	var user = new User('user-' + i);
-	user.avatar = 'http://lorempixel.com/200/200/?id='+users.length;
-	users.push(user);
-};
+// for (var i = 0; i < 12; i++) {
+// 	var user = new User('user-' + i);
+// 	user.avatar = 'http://lorempixel.com/200/200/?id='+users.length;
+// 	users.push(user);
+// };
 
