@@ -125,6 +125,7 @@ var createGame = function () {
 	games.push(game);
 
 	broadcastGamesList();
+	saveGames();
 }
 
 var findUser = function (username) {
@@ -228,8 +229,17 @@ var broadcastCurrentGameQuestion = function (socket) {
 
 }
 
+var saveGames = function () {
+
+	var gamesData = games
+		.map(function(obj){ return {data: obj.data }; })
+		.filter(function(obj){ return obj.data.completed == true; });
+
+	fs.writeFile('./data/games.json', JSON.stringify(gamesData),  function (err) {});
+}
+
 var saveUsers = function () {
-	fs.writeFile('dist/users.json', JSON.stringify(users),  function (err) {});
+	fs.writeFile('./data/users.json', JSON.stringify(users),  function (err) {});
 }
 
 
