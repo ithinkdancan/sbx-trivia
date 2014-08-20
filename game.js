@@ -41,7 +41,7 @@ var game = function (config) {
 
 	this.gameStartDelay = 1000*60*1;
 
-	this.requiredPlayers = 1;
+	this.requiredPlayers = 2;
 
 	this.startTimeout = false;
 
