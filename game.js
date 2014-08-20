@@ -10,7 +10,7 @@ var game = function (config) {
 
 	this.questions = _.sample(questions, 15);
 
-	this.questions = questions.filter(function(question){ return question.image; });
+	// this.questions = questions.filter(function(question){ return question.image; });
 
 	//Event Callbacks
 	this.onGameStart = config.onStart || false;
@@ -35,11 +35,11 @@ var game = function (config) {
 
 	this.gameDelay = 20000;
 
-	this.gameResultDelay = 1000*1;
+	this.gameResultDelay = 5000;
 
-	this.gameOverDelay = 0;
+	this.gameOverDelay = 5000;
 
-	this.gameStartDelay = 1000*60*0;
+	this.gameStartDelay = 1000*60*1;
 
 	this.requiredPlayers = 1;
 
