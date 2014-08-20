@@ -8,9 +8,9 @@ var game = function (config) {
 	//Socket Interface
 	this.io = config.io;
 
-	this.questions = _.sample(questions, 15);
+	// this.questions = _.sample(questions, 15);
 
-	// this.questions = questions.filter(function(question){ return question.image; });
+	this.questions = questions.filter(function(question){ return question.image; });
 
 	//Event Callbacks
 	this.onGameStart = config.onStart || false;
@@ -33,15 +33,15 @@ var game = function (config) {
 	//User Answers for each question
 	this.answers = [];
 
-	this.gameDelay = 20000;
+	this.gameDelay = 1000;
 
-	this.gameResultDelay = 5000;
+	this.gameResultDelay = 1000;
 
 	this.gameOverDelay = 5000;
 
-	this.gameStartDelay = 1000*60*1;
+	this.gameStartDelay = 1000*60*0;
 
-	this.requiredPlayers = 2;
+	this.requiredPlayers = 1;
 
 	this.startTimeout = false;
 

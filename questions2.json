@@ -1663,5 +1663,30 @@
             }
         ],
         "correct": 0
+    },
+    {
+        "text": "The best part of this Photoshop magic is...",
+        "image" : "/images/questions/photoshop.jpg",
+        "options": [
+            {
+                "text": "Christopher’s hair"
+            },
+            {
+                "text": "Rachel’s smug eyebrows"
+            },
+            {
+                "text": "Jenny’s bangs"
+            },
+            {
+                "text": "Jenny’s braces"
+            },
+            {
+                "text": "Flying Pixel"
+            },
+            {
+                "text": "All of the things"
+            }
+        ],
+        "correct": 5
     }
 ]
