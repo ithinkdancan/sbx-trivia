@@ -15,8 +15,9 @@ angular.module('sbx.trivia.controller.board', [
 	function ($scope,   socket,   $interval){
 
 		var baseIndex = 0;
-		var displayedUsersThreshold = 5;
+		var displayedUsersThreshold = 4;
 		var firstValidFrame = null;
+		var isLeaping = false;
 
 		$scope.activeIndex = 8;
 		$scope.users = [];
@@ -67,6 +68,16 @@ angular.module('sbx.trivia.controller.board', [
 
 		};
 
+		$interval(function(){
+
+			if(!isLeaping){
+
+				$scope.activeIndex = $scope.displayedUsers[$scope.activeIndex + 1] ?  $scope.activeIndex + 1 : 0;
+
+			}
+
+		},5000)
+
 		socket.on('users:list', function(data){
 			$scope.users = data;
 
@@ -112,7 +123,7 @@ angular.module('sbx.trivia.controller.board', [
 
 
 			if (frame.valid && frame.hands[0]) {
-
+				isLeaping = true;
 				if (!firstValidFrame) firstValidFrame = frame
          		var t0 = firstValidFrame.translation(frame);
 
@@ -130,6 +141,7 @@ angular.module('sbx.trivia.controller.board', [
 				})
 
 			} else {
+				isLeaping = false;
 				baseIndex = $scope.activeIndex;
 			}
 		});

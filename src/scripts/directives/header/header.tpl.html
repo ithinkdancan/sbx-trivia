@@ -6,5 +6,7 @@
 					<div ng-if="user.avatar" class="user-image"  ng-style="{'background-image':'url('+user.avatar+')'}"></div>
 			</photo-upload>
 		</div>
+		<div class="score">{{user.score}} <div class="points"><ng-pluralize count="user.score" when="{'one':'point', 'other':'points'}"></ng-pluralize></div></div>
 	</div>
+
 </header>

@@ -81,6 +81,7 @@ angular.module('sbx.trivia.controller.game', [
 	$scope.$on('$locationChangeStart', function(){
 	 	if(gameId){
 	 		socket.emit('game:leave', {cid: user.cid, id: gameId});
+	 		authenticationService.updateUser(); 
 	 	}
 	});
 

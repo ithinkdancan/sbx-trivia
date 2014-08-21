@@ -48,6 +48,14 @@ factory('authenticationService', [
 
 		},
 
+		updateUser: function () {
+			if(this.isAuthenticated){
+				var user = new User();
+				user.$get({username: currentUser.username}).then(function(data){
+					currentUser = data.user;
+				})
+			}
+		},
 
 		//create a new user
 		register: function (username) {

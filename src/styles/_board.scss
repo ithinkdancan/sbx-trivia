@@ -150,7 +150,12 @@
 			transition: border-color .25s ease;
 			border: 3px solid #323232;
 			background: url(../images/male18-white.png) no-repeat;
-			background-size:contain;
+			background-position: center center;
+			background-size: contain;
+
+			&.hasAvatar {
+				background-size: cover;
+			}
 		}
 
 

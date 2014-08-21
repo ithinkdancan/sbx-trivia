@@ -18,6 +18,18 @@ header {
 		width: 140px;
 	}
 
+	.score {
+		position: absolute;
+		right: 15px;
+		top: 50%;
+		transform: translateY(-50%);
+		line-height: 100%;
+
+		.points {
+			font-size: 12px;
+		}
+	}
+
 	.file-uploader {
 		width: 30px;
 		height: 30px;
