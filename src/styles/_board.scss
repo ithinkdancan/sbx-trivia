@@ -320,11 +320,13 @@
 
 	.question {
 		text-align: center;
+		width: 80%;
 
 		&.has-image {
 			.options {
 				float: left;
-				width: 50%;
+				width: 60%;
+				padding-right: 30px;
 			}
 			.option-item {
 				float: none;
@@ -332,6 +334,10 @@
 			}
 			.option-link {
 				height: 120px;
+			}
+
+			.countdown {
+				display: none;
 			}
 		}
 
@@ -350,7 +356,7 @@
 
 		.question-image {
 			float: left;
-			width: 50%;
+			width: 40%;
 			height: 600px;
 			position: relative;
 
@@ -362,6 +368,12 @@
 				left: 50%;
 				transform: translate(-50%,-50%);
 			}
+		}
+
+		.options {
+			width: 95%;
+			margin: 0 auto;
+			overflow: hidden;
 		}
 
 		.option-item {
@@ -394,10 +406,52 @@
 		.option-text {
 			position: absolute;
 			top: 50%;
-			left: 0;
-			width: 100%;
-			transform: translateY(-50%);
+			left: 50%;
+			width: 95%;
+			transform: translate(-50%, -50%);
+		}
+
+		.minutes, .colon {
+			display: none;
+		}
+
+		.countdown {
+			display: block;
+			width: 140px;
+			height: 140px;
+			margin: 0 auto;
+			font-size: 60px;
+			line-height: 140px;
+			color: $defaultColor;
+			position: absolute;
+			bottom: 60px;
+			left: 40%;
+			transform: translateX(-50%);
+
+			&:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				height: 100%;
+				width: 100%;
+				background: url(/images/board/spinner.png) center center no-repeat;
+				background-size: contain;
+				animation: spinners 1s infinite steps(12);
+			}
 		}
 	}
 
+	
+
+	.current-game .leaderboard {
+		right: 0;
+		left: auto;
+		width: 20%;
+	}
+
+}
+
+@keyframes spinners {
+	to { transform: rotate(360deg); }
 }

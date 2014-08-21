@@ -119,6 +119,7 @@ var createGame = function () {
 	var game = new Game({
 		io:io,
 		onStart: broadcastGamesList,
+		onNext: broadcastGamesList,
 		onResult: updateUserScores,
 		onEnd: createGame
 	});

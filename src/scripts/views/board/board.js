@@ -20,6 +20,7 @@ angular.module('sbx.trivia.controller.board', [
 
 		$scope.activeIndex = 8;
 		$scope.users = [];
+		$scope.gameScores = [];
 
 
 		$scope.getAvatarClass = function ($index) {
@@ -97,6 +98,14 @@ angular.module('sbx.trivia.controller.board', [
 				$scope.displayedUsers = $scope.users;
 				$scope.activeIndex = Math.floor($scope.users.length/2);
 			}
+		})
+
+		$scope.$watch('game.scores',function(scores){
+			if(!scores){ return; }
+			$scope.gameScores = $scope.game.users.map(function(user){
+				user.score = $scope.game.scores[user.cid] || 0;
+				return user;
+			});
 		})
 
 		Leap.loop(function(frame){
