@@ -24,8 +24,10 @@ header {
 		top: 50%;
 		transform: translateY(-50%);
 		line-height: 100%;
+		font-weight: bold;
 
 		.points {
+			font-weight: normal;
 			font-size: 12px;
 		}
 	}
