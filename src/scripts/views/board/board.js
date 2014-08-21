@@ -16,6 +16,7 @@ angular.module('sbx.trivia.controller.board', [
 
 		var baseIndex = 0;
 		var displayedUsersThreshold = 5;
+		var firstValidFrame = null;
 
 		$scope.activeIndex = 8;
 		$scope.users = [];
@@ -30,10 +31,7 @@ angular.module('sbx.trivia.controller.board', [
 				classes.push('active current');
 			
 			//future class	
-			} else if ($index > $scope.activeIndex) {
-
-				// console.log($scope.activeIndex, displayedUsersThreshold);
-				
+			} else if ($index > $scope.activeIndex) {				
 				
 				//future visible
 				if($index <= $scope.activeIndex+displayedUsersThreshold){
@@ -64,14 +62,9 @@ angular.module('sbx.trivia.controller.board', [
 				}
 			}
 
-			//0 1 2 3
-			//2 3 4 5
-
 			return classes.join(' ');
 
 		};
-
-		socket.emit('board:register');
 
 		socket.on('users:list', function(data){
 			$scope.users = data;
@@ -107,10 +100,15 @@ angular.module('sbx.trivia.controller.board', [
 		})
 
 		Leap.loop(function(frame){
-			if (frame.valid && frame.hands[0]) {	
 
-				var t = frame.hands[0].palmPosition;
-				var xPercent = Math.min(Math.max(t[0],-300),300)/300;
+
+			if (frame.valid && frame.hands[0]) {
+
+				if (!firstValidFrame) firstValidFrame = frame
+         		var t0 = firstValidFrame.translation(frame);
+
+				// var t = frame.hands[0].palmPosition;
+				var xPercent = Math.min(Math.max(t0[0],-300),300)/300;
 				var index = Math.floor(baseIndex + xPercent*10);
 
 				//check for loop around
@@ -126,6 +124,10 @@ angular.module('sbx.trivia.controller.board', [
 				baseIndex = $scope.activeIndex;
 			}
 		});
+
+
+		//Kick it off!
+		socket.emit('board:register');
 
 	}
 ]);
