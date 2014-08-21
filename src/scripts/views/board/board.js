@@ -118,7 +118,7 @@ angular.module('sbx.trivia.controller.board', [
 
 				// var t = frame.hands[0].palmPosition;
 				var xPercent = Math.min(Math.max(t0[0],-300),300)/300;
-				var index = Math.floor(baseIndex + xPercent*10);
+				var index = Math.floor(baseIndex + xPercent*5);
 
 				//check for loop around
 				index = index < 0 ? $scope.users.length + (index) : index;

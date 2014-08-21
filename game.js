@@ -9,7 +9,7 @@ var game = function (config) {
 	this.io = config.io;
 	// this.questions = questions;
 	this.questions = _.sample(questions, 4);
-	this.questions = questions.filter(function(question){ return question.image; });
+	// this.questions = questions.filter(function(question){ return question.image; });
 
 	//Event Callbacks
 	this.onGameStart = config.onStart || false;
@@ -38,7 +38,7 @@ var game = function (config) {
 
 	this.gameOverDelay = 5000;
 
-	this.gameStartDelay = 1000*60*1;
+	this.gameStartDelay = 1000*60*0;
 
 	this.requiredPlayers = 1;
 

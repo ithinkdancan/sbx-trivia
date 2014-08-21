@@ -21,6 +21,7 @@
 				<ul>
 					<li ng-repeat="user in displayedUsers" class="user" ng-class="getAvatarClass($index)">
 						<div class="user-avatar" ng-if="user.avatar" ng-style="{'background-image':'url('+user.avatar+')'}"></div>
+						<div class="user-avatar" ng-if="!user.avatar"></div>
 						<div class="user-name">{{user.username}}</div>
 					</li>
 				</ul>
