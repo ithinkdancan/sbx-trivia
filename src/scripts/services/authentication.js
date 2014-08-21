@@ -12,6 +12,7 @@ factory('authenticationService', [
 	var username;
 	var currentUser = {};
 	var authenticated = false;
+	var isUploading = false;
 	
 	return {
 
@@ -80,8 +81,13 @@ factory('authenticationService', [
 		
 		},
 
-		uploadPhoto: function(photo) {
+		isUploading: function () {
+			return isUploading;
+		},
 
+		uploadPhoto: function(photo) {
+			console.log('upload photo!');
+			isUploading = true;
 			currentUser.avatar = photo;
 
 			var user = new User(currentUser);
@@ -91,6 +97,9 @@ factory('authenticationService', [
 					currentUser = data.user;
 				}
 				console.log('uploadPhoto got something', arguments);
+				isUploading = false;
+			}, function () {
+				isUploading = false;
 			})
 		}
 	};

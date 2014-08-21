@@ -14,7 +14,7 @@ angular.module('sbx.trivia.controller.login', ['sbx.trivia.service.authenticatio
 		}
 
 		var failure = function () {
-			console.log('failure');
+			$scope.error = 'Username is Taken';
 			//username was probably taken
 		}
 

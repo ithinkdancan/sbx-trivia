@@ -22,6 +22,21 @@
 		margin: 20px auto 50px auto;
 	}
 	
+	.input-container {
+		position: relative;
+	}
+
+	.error {
+		position: absolute;
+		width: 100%;
+		bottom: 100%;
+		text-align: center;
+		padding: 10px 0;
+		color: #FFFFFF;
+		font-weight: bold;
+		font-size: 16px;
+	}
+	
 	.username {
 		display: block;
 		width: 100%;

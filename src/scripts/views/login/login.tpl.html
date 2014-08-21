@@ -2,7 +2,8 @@
 	<form ng-submit="createTeam()">
 		<div class="login-form">
 			<div><img src="images/logo.png" class="logo"></div>
-	    	<div>
+	    	<div class="input-container">
+	    		<div class="error" ng-if="error">{{error}}</div>
 	    		<input class="username" type="text" ng-model="username" placeholder="Your Name" />
 	    	</div>
 	    </div>

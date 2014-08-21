@@ -132,7 +132,7 @@ var createGame = function () {
 var findUser = function (username) {
 
 	var match = users.filter(function(user){ 
-		return user.username == username;
+		return user.username.toLowerCase() == username.toLowerCase();
 	});
 
 	return match ? match[0] : false;

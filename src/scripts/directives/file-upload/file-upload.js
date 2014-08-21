@@ -11,7 +11,6 @@ angular.module('sbx.trivia.directive.file-upload', [])
     };
 
     $scope.uploadImage = function (event) {
-      console.log(event.target);
       dataUrl = event.target.result;
       $scope.image.src = dataUrl;
     };

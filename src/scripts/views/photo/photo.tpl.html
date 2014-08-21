@@ -5,7 +5,8 @@
 			<photo-upload>
 					<div ng-if="user.avatar" class="user-image"  ng-style="{'background-image':'url('+user.avatar+')'}"></div>
 			</photo-upload>
-			<div class="label">Upload a Photo</div>
+			<div class="label" ng-if="!loading">Upload a Photo</div>
+			<div class="label" ng-if="loading">Uploading...</div>
 		</div>
 	</div>
 	<div class="button-container"><hr><a href="#/" class="button">{{user.avatar ? "Next" : "Skip"}}</a></div>

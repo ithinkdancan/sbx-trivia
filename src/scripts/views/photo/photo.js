@@ -13,8 +13,14 @@ angular.module('sbx.trivia.controller.photo', ['sbx.trivia.service.authenticatio
 		$scope.$watch(function(){ 
 			return authenticationService.getCurrentUser(); 
 		}, function(user){
-			console.log('user', user);
 			$scope.user = user;
+		})
+
+
+		$scope.$watch(function(){ 
+			return authenticationService.isUploading(); 
+		}, function(loading){
+			$scope.loading = loading;
 		})
 
 	}
