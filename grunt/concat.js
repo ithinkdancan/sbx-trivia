@@ -2,6 +2,7 @@ module.exports = {
     lib: {
         files : {
             'dist/scripts/lib.js': [
+                '<%= paths.src %>/bower_components/socket.io-client/socket.io.js',
                 '<%= paths.src %>/bower_components/angular/angular.js',
                 '<%= paths.src %>/bower_components/angular-route/angular-route.js',
                 '<%= paths.src %>/bower_components/angular-resource/angular-resource.js',
