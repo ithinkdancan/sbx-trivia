@@ -86,17 +86,17 @@ factory('authenticationService', [
 		},
 
 		uploadPhoto: function(photo) {
-			console.log('upload photo!');
 			isUploading = true;
-			currentUser.avatar = photo;
+			
+			var updatedUser = angular.copy(currentUser);
+				updatedUser.avatar = photo;
 
-			var user = new User(currentUser);
+			var user = new User(updatedUser);
 
 			user.$save({username: username}).then(function(data){
 				if(data.success && data.user){
 					currentUser = data.user;
 				}
-				console.log('uploadPhoto got something', arguments);
 				isUploading = false;
 			}, function () {
 				isUploading = false;
