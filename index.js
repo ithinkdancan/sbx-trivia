@@ -6,6 +6,7 @@ var router = express.Router();
 var bodyParser = require('body-parser');
 var fs = require("fs");
 var mkdirp = require('mkdirp');
+var shortId = require('shortid');
 
 
 var User = require('./user.js');
@@ -77,7 +78,7 @@ router.route('/users/:username')
 			var base64Data = matchingUser.avatar.replace(/^data:image\/png;base64,/, "");
 			mkdirp('dist/uploads', function (err) {
 				fs.writeFile('dist/uploads/' + matchingUser.cid + ".png", base64Data, 'base64', function(err) {
-					 matchingUser.avatar =  encodeURI('/uploads/' + matchingUser.cid + ".png");
+					 matchingUser.avatar =  encodeURI('/uploads/' + matchingUser.cid + ".png?cache=" + shortId.generate());
 
 					 res.json({ success: true, user: matchingUser });
 
