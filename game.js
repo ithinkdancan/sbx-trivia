@@ -8,8 +8,8 @@ var game = function (config) {
 	//Socket Interface
 	this.io = config.io;
 	// this.questions = questions;
-	this.questions = _.sample(questions, 4);
-	// this.questions = questions.filter(function(question){ return question.image; });
+	// this.questions = _.sample(questions, 4);
+	this.questions = questions.filter(function(question){ return question.image; });
 
 	//Event Callbacks
 	this.onGameStart = config.onStart || false;

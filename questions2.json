@@ -72,13 +72,13 @@
         "correct": 1
     },
     {
-        "text": "What do Tom West and Kevin Walorski share in common?",
+        "text": "What do Tom West and Kevin Walorski have in common?",
         "options": [
             {
                 "text": "Grandparents on their mother’s side"
             },
             {
-                "text": "Natural ping pong talent"
+                "text": "Natural ping-pong talent"
             },
             {
                 "text": "A love of Sweet Leaf Tea Half & Half"
@@ -165,13 +165,13 @@
         "text": "What costume did Tom West wear to the recent Top Golf off-site party?",
         "options": [
             {
-                "text": "Hipster Captain America"
+                "text": "A. Hipster Captain America"
             },
             {
-                "text": "Hip Hop Captain America"
+                "text": "B. Hip Hop Captain America"
             },
             {
-                "text": "Captain Springbox"
+                "text": "C. Captain Springbox"
             },
             {
                 "text": "Both A & B?"
@@ -201,13 +201,13 @@
         "text": "You open a bag of almonds while at your desk. What happens next?",
         "options": [
             {
-                "text": "Someone with a nut allergy starts sneezing"
+                "text": "A. Someone with a nut allergy starts sneezing"
             },
             {
-                "text": "Murphy appears"
+                "text": "B. Murphy appears"
             },
             {
-                "text": "Kevin asks where you got those"
+                "text": "C. Kevin asks where you got those"
             },
             {
                 "text": "Both B & C"
@@ -498,7 +498,7 @@
                 "text": "Bakerman’s"
             },
             {
-                "text": "Cazzollis"
+                "text": "Cazzolli's"
             }
         ],
         "correct": 1
@@ -594,7 +594,7 @@
         "correct": 1
     },
     {
-        "text": "Who’s ear starting randomly bleeding during a new business meeting?",
+        "text": "Whose ear starting randomly bleeding during a new business meeting?",
         "options": [
             {
                 "text": "Brad Parker"
@@ -820,7 +820,7 @@
                 "text": "Eggs"
             },
             {
-                "text": "Miller Light"
+                "text": "Miller Lite"
             },
             {
                 "text": "Grapes"
@@ -835,7 +835,7 @@
                 "text": "Blue birds "
             },
             {
-                "text": "Miller Light"
+                "text": "Miller Lite"
             },
             {
                 "text": "Flasks"
@@ -1184,7 +1184,7 @@
                 "text": "“How was your trip to India? I thought you’d be more tan.”"
             },
             {
-                "text": "All of the above"
+                "text": "None of the above"
             }
         ],
         "correct": 3
@@ -1365,13 +1365,13 @@
         "image" : "/images/questions/lola.jpg",
         "options": [
             {
-                "text": "Office dog, Lola"
+                "text": "A. Office dog, Lola"
             },
             {
-                "text": "Mural star, Lola"
+                "text": "B. Mural star, Lola"
             },
             {
-                "text": "A chimp"
+                "text": "C. A chimp"
             },
             {
                 "text": "A & B"
@@ -1384,13 +1384,13 @@
         "image" : "/images/questions/murphy.jpg",
         "options": [
             {
-                "text": "Office dog, Murphy"
+                "text": "A. Office dog, Murphy"
             },
             {
-                "text": "The biggest beggar in the office"
+                "text": "B. The biggest beggar in the office"
             },
             {
-                "text": "A chimp"
+                "text": "C. A chimp"
             },
             {
                 "text": "A & B"
@@ -1422,13 +1422,13 @@
         "image" : "/images/questions/kindle.jpg",
         "options": [
             {
-                "text": "Former office dog, Kindle"
+                "text": "A. Former office dog, Kindle"
             },
             {
-                "text": "A chimp"
+                "text": "B. A chimp"
             },
             {
-                "text": "Turner and Hooch star, Hooch "
+                "text": "C. Turner and Hooch star, Hooch "
             },
             {
                 "text": "A & C"

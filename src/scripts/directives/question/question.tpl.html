@@ -7,5 +7,7 @@
 	<ul class="options">
 		<li ng-repeat="option in question.options" class="option-item"><a href ng-click="selectAnswer({selectedAnswer:$index})" class="option-link" ng-class="{'selected':$index===selectedAnswer, 'correct': correctAnswer>=0 && correctAnswer===$index, 'incorrect': correctAnswer!==false && correctAnswer!==$index }"><span class="option-text">{{option.text}}</span></a></li>
 	</ul>
-	<span countdown="question.endTime" base="question.currentTime"></span>
+	<div ng-hide="correctAnswer!==false">
+		<span countdown="question.endTime" base="question.currentTime"></span>
+	</div>
 </div>

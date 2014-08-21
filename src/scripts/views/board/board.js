@@ -70,10 +70,8 @@ angular.module('sbx.trivia.controller.board', [
 
 		$interval(function(){
 
-			if(!isLeaping){
-
+			if(!isLeaping && $scope.game.started === false){
 				$scope.activeIndex = $scope.displayedUsers[$scope.activeIndex + 1] ?  $scope.activeIndex + 1 : 0;
-
 			}
 
 		},5000)
@@ -121,9 +119,9 @@ angular.module('sbx.trivia.controller.board', [
 
 		Leap.loop(function(frame){
 
-
-			if (frame.valid && frame.hands[0]) {
+			if (frame.valid && frame.hands[0] && $scope.game && $scope.game.started === false) {
 				isLeaping = true;
+				
 				if (!firstValidFrame) firstValidFrame = frame
          		var t0 = firstValidFrame.translation(frame);
 
