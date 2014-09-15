@@ -1,13 +1,13 @@
 @import 'variables';
 @import 'mixin/responsive';
-@import 'reset';
 
+@import 'reset';
 @import 'base';
+
 @import 'header';
-@import 'springbox';
+
 @import 'view/home';
 @import 'view/game';
-@import 'board';
-
+@import 'view/board';
 @import 'view/photo';
 @import 'view/login';

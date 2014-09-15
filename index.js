@@ -85,12 +85,9 @@ router.route('/users/:username')
 					 broadcastUsers();
 
 				});
-			});
-
-			
-
-		
+			});	
 	})
+
 app.use('/api', router);
 
 var updateUserScores = function(){

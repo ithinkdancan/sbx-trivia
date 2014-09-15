@@ -75,6 +75,4 @@ angular.module('sbx.trivia', [
 
 }])
 
-.controller('appController', ['$rootScope', '$location', function($rootScope, $location){
-
-}])
+.controller('appController', ['$rootScope', '$location', function($rootScope, $location){}])
